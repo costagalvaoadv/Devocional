@@ -1,0 +1,1767 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Devocional Atemporal · 365 Dias</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --cream: #FAF8F4;
+  --warm: #F2EDE5;
+  --warmer: #E8DFD3;
+  --gold: #B8976A;
+  --gold-light: #D4B896;
+  --gold-pale: rgba(184,151,106,0.15);
+  --ink: #2C2420;
+  --ink-soft: #4A3F38;
+  --muted: #8C7B6E;
+  --muted-light: #B5A99F;
+  --line: rgba(184,151,106,0.25);
+  --line-soft: rgba(184,151,106,0.12);
+  --white: #FFFFFF;
+  --radius: 3px;
+  --shadow: 0 2px 24px rgba(44,36,32,0.06);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Jost', sans-serif;
+  background: var(--cream);
+  color: var(--ink);
+  min-height: 100vh;
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── TYPOGRAPHY ── */
+.serif { font-family: 'Cormorant Garamond', serif; }
+h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 400; }
+
+/* ── UTILITIES ── */
+.hidden { display: none !important; }
+.label {
+  font-size: 9px; letter-spacing: 3px; text-transform: uppercase;
+  color: var(--gold); font-weight: 500; font-family: 'Jost', sans-serif;
+}
+.divider {
+  width: 32px; height: 0.5px; background: var(--gold);
+  margin: 1.2rem 0;
+}
+.divider.center { margin: 1.2rem auto; }
+
+/* ── LOADER ── */
+#loader {
+  position: fixed; inset: 0;
+  background: var(--cream);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 9999;
+  transition: opacity 0.6s ease;
+}
+#loader .l-inner { text-align: center; }
+#loader .l-ornament {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 13px; letter-spacing: 8px;
+  color: var(--gold-light); margin-bottom: 1.5rem;
+}
+#loader .l-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px; font-weight: 300;
+  color: var(--ink); letter-spacing: 1px;
+}
+
+/* ── AUTH SCREEN ── */
+#auth-screen {
+  min-height: 100vh;
+  display: flex; align-items: center; justify-content: center;
+  padding: 2rem;
+  background: var(--cream);
+}
+
+.auth-card {
+  width: 100%; max-width: 400px;
+  background: var(--white);
+  border: 0.5px solid var(--line);
+  border-radius: var(--radius);
+  padding: 3rem 2.5rem;
+  box-shadow: var(--shadow);
+}
+
+.auth-logo {
+  text-align: center; margin-bottom: 2rem;
+}
+.auth-logo .ornament {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 11px; letter-spacing: 6px;
+  color: var(--gold-light); display: block; margin-bottom: 0.8rem;
+}
+.auth-logo h1 {
+  font-size: 26px; font-weight: 300;
+  color: var(--ink); line-height: 1.2;
+}
+.auth-logo p {
+  font-size: 11px; color: var(--muted);
+  letter-spacing: 1px; margin-top: 0.4rem;
+  font-weight: 300;
+}
+
+.auth-tabs {
+  display: flex; gap: 0;
+  border-bottom: 0.5px solid var(--line);
+  margin-bottom: 2rem;
+}
+.auth-tab {
+  flex: 1; padding: 0.7rem;
+  background: none; border: none;
+  font-family: 'Jost', sans-serif;
+  font-size: 11px; letter-spacing: 2px;
+  text-transform: uppercase; font-weight: 500;
+  color: var(--muted); cursor: pointer;
+  border-bottom: 1.5px solid transparent;
+  margin-bottom: -0.5px;
+  transition: all 0.2s;
+}
+.auth-tab.active {
+  color: var(--gold);
+  border-bottom-color: var(--gold);
+}
+
+.form-group { margin-bottom: 1.2rem; }
+.form-group label {
+  display: block;
+  font-size: 9px; letter-spacing: 2.5px;
+  text-transform: uppercase; color: var(--muted);
+  font-weight: 500; margin-bottom: 0.5rem;
+}
+.form-group input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: var(--cream);
+  border: 0.5px solid var(--line);
+  border-radius: var(--radius);
+  font-family: 'Jost', sans-serif;
+  font-size: 16px; /* ≥16px evita zoom automático no iOS */
+  font-weight: 300;
+  color: var(--ink);
+  outline: none;
+  transition: border-color 0.2s;
+}
+.form-group input:focus {
+  border-color: var(--gold);
+  background: var(--white);
+}
+
+.btn-primary {
+  width: 100%;
+  padding: 0.9rem;
+  background: var(--ink);
+  border: none; border-radius: var(--radius);
+  font-family: 'Jost', sans-serif;
+  font-size: 11px; letter-spacing: 3px;
+  text-transform: uppercase; font-weight: 500;
+  color: var(--cream);
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-top: 0.5rem;
+}
+.btn-primary:hover { background: var(--ink-soft); }
+.btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.auth-error {
+  background: rgba(180,60,60,0.08);
+  border: 0.5px solid rgba(180,60,60,0.2);
+  border-radius: var(--radius);
+  padding: 0.7rem 1rem;
+  font-size: 12px; color: #8B2020;
+  margin-bottom: 1rem;
+  display: none;
+}
+
+/* ── APP LAYOUT ── */
+#app { display: none; min-height: 100vh; }
+
+/* SIDEBAR */
+.sidebar {
+  position: fixed; left: 0; top: 0; bottom: 0;
+  width: 260px;
+  background: var(--white);
+  border-right: 0.5px solid var(--line);
+  display: flex; flex-direction: column;
+  z-index: 100;
+  transition: transform 0.3s ease;
+}
+
+.sidebar-logo {
+  padding: 2rem 1.5rem 1.5rem;
+  border-bottom: 0.5px solid var(--line-soft);
+}
+.sidebar-logo .s-ornament {
+  font-size: 9px; letter-spacing: 4px;
+  color: var(--gold-light); display: block;
+  margin-bottom: 0.4rem; font-family: 'Cormorant Garamond', serif;
+}
+.sidebar-logo h2 {
+  font-size: 17px; font-weight: 300;
+  color: var(--ink); line-height: 1.3;
+}
+
+.sidebar-nav { flex: 1; padding: 1.5rem 0; overflow-y: auto; }
+
+.nav-section-label {
+  font-size: 8px; letter-spacing: 3px;
+  text-transform: uppercase; color: var(--muted-light);
+  font-weight: 500; padding: 0 1.5rem;
+  margin-bottom: 0.5rem; margin-top: 1rem;
+}
+.nav-section-label:first-child { margin-top: 0; }
+
+.nav-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 0.65rem 1.5rem;
+  cursor: pointer;
+  transition: background 0.15s;
+  border-left: 2px solid transparent;
+}
+.nav-item:hover { background: var(--warm); }
+.nav-item.active {
+  background: var(--gold-pale);
+  border-left-color: var(--gold);
+}
+.nav-item .nav-icon {
+  width: 16px; text-align: center;
+  font-size: 14px; color: var(--muted);
+}
+.nav-item.active .nav-icon { color: var(--gold); }
+.nav-item span {
+  font-size: 12px; font-weight: 400;
+  color: var(--ink-soft); letter-spacing: 0.3px;
+}
+.nav-item.active span { color: var(--ink); font-weight: 500; }
+
+/* Blocks list in nav */
+.blocks-list { padding: 0; }
+.block-nav-item {
+  display: flex; align-items: center; gap: 8px;
+  padding: 0.5rem 1.5rem;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.block-nav-item:hover { background: var(--warm); }
+.block-nav-item.active { background: var(--gold-pale); }
+.block-nav-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 14px; color: var(--gold);
+  width: 20px; text-align: center;
+}
+.block-nav-title {
+  font-size: 11px; color: var(--muted);
+  font-weight: 300;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.block-nav-item.active .block-nav-title { color: var(--ink); }
+
+.sidebar-footer {
+  padding: 1rem 1.5rem;
+  border-top: 0.5px solid var(--line-soft);
+}
+.user-info {
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 0.8rem;
+}
+.user-avatar {
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  background: var(--gold-pale);
+  border: 0.5px solid var(--line);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 13px; color: var(--gold);
+}
+.user-email {
+  font-size: 11px; color: var(--muted);
+  font-weight: 300;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  max-width: 150px;
+}
+.btn-logout {
+  background: none; border: 0.5px solid var(--line);
+  border-radius: var(--radius);
+  font-family: 'Jost', sans-serif;
+  font-size: 9px; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--muted);
+  padding: 0.4rem 0.8rem;
+  cursor: pointer; transition: all 0.2s;
+  width: 100%;
+}
+.btn-logout:hover { border-color: var(--gold); color: var(--gold); }
+
+/* MAIN CONTENT */
+.main {
+  margin-left: 260px;
+  min-height: 100vh;
+  padding: 3rem;
+  max-width: calc(100% - 260px);
+}
+
+/* Mobile menu toggle */
+.menu-toggle {
+  display: none;
+  position: fixed; top: 1rem; left: 1rem;
+  z-index: 200;
+  background: var(--white);
+  border: 0.5px solid var(--line);
+  border-radius: var(--radius);
+  padding: 0.5rem 0.7rem;
+  cursor: pointer;
+  font-size: 18px; color: var(--ink);
+}
+
+/* ── VIEWS ── */
+.view { display: none; }
+.view.active { display: block; }
+
+/* ── DASHBOARD ── */
+.dash-greeting {
+  margin-bottom: 3rem;
+}
+.dash-greeting .g-label { margin-bottom: 1rem; }
+.dash-greeting h1 {
+  font-size: 36px; font-weight: 300;
+  line-height: 1.2; color: var(--ink);
+  margin-bottom: 0.5rem;
+}
+.dash-greeting p {
+  font-size: 14px; color: var(--muted);
+  font-weight: 300; line-height: 1.6;
+  max-width: 480px;
+}
+
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem; margin-bottom: 2.5rem;
+}
+.stat-card {
+  background: var(--white);
+  border: 0.5px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+}
+.stat-card .s-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 40px; font-weight: 300;
+  color: var(--gold); line-height: 1;
+  margin-bottom: 0.3rem;
+}
+.stat-card .s-label {
+  font-size: 9px; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--muted);
+  font-weight: 500;
+}
+
+.today-card {
+  background: var(--white);
+  border: 0.5px solid var(--line);
+  border-radius: var(--radius);
+  padding: 2rem;
+  margin-bottom: 2rem;
+  cursor: pointer;
+  transition: box-shadow 0.2s;
+}
+.today-card:hover { box-shadow: var(--shadow); }
+.today-card .tc-label { margin-bottom: 0.8rem; }
+.today-card .tc-day {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 52px; font-weight: 300;
+  color: var(--gold); line-height: 1;
+  margin-bottom: 0.3rem;
+}
+.today-card .tc-block {
+  font-size: 11px; color: var(--muted);
+  letter-spacing: 1px; font-weight: 300;
+  margin-bottom: 1rem;
+}
+.today-card .tc-verse {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 16px; font-style: italic;
+  color: var(--ink-soft); line-height: 1.5;
+  border-left: 1.5px solid var(--gold);
+  padding-left: 1rem;
+  margin-bottom: 1.2rem;
+}
+.today-card .tc-cta {
+  font-size: 10px; letter-spacing: 2.5px;
+  text-transform: uppercase; color: var(--gold);
+  font-weight: 500;
+}
+
+.progress-section { margin-bottom: 2rem; }
+.progress-section h3 {
+  font-size: 13px; font-weight: 500;
+  color: var(--ink); margin-bottom: 1rem;
+  letter-spacing: 0.3px;
+}
+.progress-bar-wrap {
+  background: var(--warm);
+  border-radius: 2px; height: 3px;
+  margin-bottom: 0.5rem;
+}
+.progress-bar-fill {
+  height: 100%; background: var(--gold);
+  border-radius: 2px;
+  transition: width 0.8s ease;
+}
+.progress-label {
+  font-size: 11px; color: var(--muted);
+  font-weight: 300;
+}
+
+/* ── HABIT TRACKER ── */
+.habit-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+}
+.habit-header {
+  font-size: 9px; letter-spacing: 1px;
+  text-transform: uppercase; color: var(--muted-light);
+  text-align: center; padding-bottom: 0.5rem;
+  font-weight: 500;
+}
+.habit-dot {
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 0.5px solid var(--line);
+  background: var(--white);
+  cursor: pointer;
+  transition: all 0.15s;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 9px; color: var(--muted-light);
+}
+.habit-dot:hover { border-color: var(--gold); }
+.habit-dot.done {
+  background: var(--gold);
+  border-color: var(--gold);
+}
+.habit-dot.done::after { content: ''; }
+
+/* ── DAY VIEW ── */
+.day-nav {
+  display: flex; align-items: center; gap: 1rem;
+  margin-bottom: 2.5rem;
+}
+.day-nav-btn {
+  background: none; border: 0.5px solid var(--line);
+  border-radius: var(--radius);
+  width: 36px; height: 36px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; color: var(--muted);
+  font-size: 16px;
+  transition: all 0.15s;
+}
+.day-nav-btn:hover { border-color: var(--gold); color: var(--gold); }
+.day-nav-info { flex: 1; }
+.day-nav-info .dn-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 13px; color: var(--gold);
+  display: block;
+}
+.day-nav-info .dn-block {
+  font-size: 10px; color: var(--muted);
+  letter-spacing: 0.5px;
+}
+.btn-mark-done {
+  padding: 0.5rem 1.2rem;
+  background: none;
+  border: 0.5px solid var(--line);
+  border-radius: var(--radius);
+  font-family: 'Jost', sans-serif;
+  font-size: 9px; letter-spacing: 2.5px;
+  text-transform: uppercase; color: var(--muted);
+  cursor: pointer; transition: all 0.2s;
+}
+.btn-mark-done:hover { border-color: var(--gold); color: var(--gold); }
+.btn-mark-done.done {
+  background: var(--gold-pale);
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+.day-content { max-width: 680px; }
+
+.day-header-block {
+  margin-bottom: 3rem;
+}
+.day-header-block .dh-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 80px; font-weight: 300;
+  color: var(--warmer); line-height: 1;
+  margin-bottom: -0.5rem;
+}
+.day-header-block .dh-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px; font-weight: 300;
+  color: var(--ink); margin-bottom: 0.3rem;
+}
+.day-header-block .dh-block {
+  font-size: 10px; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--muted);
+  font-weight: 300;
+}
+
+.content-section {
+  margin-bottom: 2.5rem;
+  padding: 1.8rem;
+  background: var(--white);
+  border: 0.5px solid var(--line);
+  border-radius: var(--radius);
+  border-left: 2px solid var(--gold);
+}
+.content-section .cs-tag {
+  font-size: 8px; letter-spacing: 3px;
+  text-transform: uppercase; color: var(--gold);
+  font-weight: 500; margin-bottom: 1rem;
+}
+.content-section .cs-subtitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 13px; font-style: italic;
+  color: var(--muted); margin-bottom: 1rem;
+}
+
+/* Versículo */
+.verse-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px; font-style: italic;
+  font-weight: 400; color: var(--ink);
+  line-height: 1.5; margin-bottom: 0.6rem;
+}
+.verse-ref {
+  font-size: 11px; color: var(--muted);
+  font-weight: 300; letter-spacing: 0.5px;
+}
+
+/* Reflexão */
+.reflection-text {
+  font-size: 15px; font-weight: 300;
+  color: var(--ink-soft); line-height: 1.85;
+}
+.reflection-text p { margin-bottom: 1.2rem; }
+.reflection-text p:last-child { margin-bottom: 0; }
+
+/* Ativar */
+.activate-questions { }
+.aq-item {
+  margin-bottom: 1rem;
+  padding: 1rem 1.2rem;
+  background: var(--cream);
+  border-radius: var(--radius);
+  border: 0.5px solid var(--line-soft);
+}
+.aq-num {
+  font-size: 8px; letter-spacing: 2px;
+  color: var(--gold-light); font-weight: 500;
+  text-transform: uppercase; margin-bottom: 0.4rem;
+}
+.aq-text {
+  font-size: 14px; font-weight: 300;
+  color: var(--ink-soft); line-height: 1.6;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+}
+
+/* Journal */
+.journal-wrap { margin-top: 1.2rem; }
+.journal-label {
+  font-size: 9px; letter-spacing: 2.5px;
+  text-transform: uppercase; color: var(--muted-light);
+  font-weight: 500; margin-bottom: 0.6rem;
+}
+.journal-area {
+  width: 100%;
+  min-height: 140px;
+  padding: 1rem;
+  background: var(--cream);
+  border: 0.5px solid var(--line);
+  border-radius: var(--radius);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 16px; /* ≥16px evita zoom automático no iOS */
+  font-weight: 400;
+  color: var(--ink); line-height: 1.8;
+  resize: vertical; outline: none;
+  transition: border-color 0.2s;
+  -webkit-appearance: none; /* remove estilo nativo iOS */
+}
+.journal-area:focus { border-color: var(--gold); background: var(--white); }
+.journal-area::placeholder {
+  color: var(--muted-light); font-style: italic; font-weight: 300;
+}
+.btn-save-journal {
+  margin-top: 0.8rem;
+  padding: 0.5rem 1.2rem;
+  background: none;
+  border: 0.5px solid var(--gold);
+  border-radius: var(--radius);
+  font-family: 'Jost', sans-serif;
+  font-size: 9px; letter-spacing: 2.5px;
+  text-transform: uppercase; color: var(--gold);
+  cursor: pointer; transition: all 0.2s;
+}
+.btn-save-journal:hover {
+  background: var(--gold);
+  color: var(--white);
+}
+.save-feedback {
+  font-size: 10px; color: var(--gold);
+  letter-spacing: 1px; margin-left: 0.8rem;
+  opacity: 0; transition: opacity 0.3s;
+}
+
+/* Oração */
+.prayer-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 17px; font-style: italic;
+  font-weight: 300; color: var(--ink-soft);
+  line-height: 1.9;
+}
+.prayer-end {
+  text-align: right;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px; color: var(--gold-light);
+  letter-spacing: 4px; margin-top: 1rem;
+}
+
+/* ── BLOCKS VIEW ── */
+.blocks-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+}
+.block-card-item {
+  background: var(--white);
+  border: 0.5px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  cursor: pointer;
+  transition: box-shadow 0.2s;
+}
+.block-card-item:hover { box-shadow: var(--shadow); }
+.block-card-item.current { border-color: var(--gold); }
+.bc-roman {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 36px; font-weight: 300;
+  color: var(--warmer); line-height: 1;
+  margin-bottom: 0.6rem;
+}
+.block-card-item.current .bc-roman { color: var(--gold-light); }
+.bc-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 14px; font-weight: 400;
+  color: var(--ink); margin-bottom: 0.3rem;
+  line-height: 1.3;
+}
+.bc-range {
+  font-size: 10px; color: var(--muted);
+  letter-spacing: 0.5px; font-weight: 300;
+}
+.bc-progress {
+  margin-top: 1rem;
+  height: 2px; background: var(--warm);
+  border-radius: 1px; overflow: hidden;
+}
+.bc-progress-fill {
+  height: 100%; background: var(--gold);
+  border-radius: 1px;
+}
+
+/* ── MURAL VIEW ── */
+.mural-intro {
+  max-width: 480px; margin-bottom: 2.5rem;
+}
+.mural-intro p {
+  font-size: 14px; color: var(--muted);
+  font-weight: 300; line-height: 1.7;
+}
+.mural-add {
+  background: var(--white);
+  border: 0.5px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  max-width: 600px;
+}
+.mural-input {
+  width: 100%;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 16px; font-style: italic;
+  color: var(--ink);
+  background: var(--cream);
+  border: 0.5px solid var(--line);
+  border-radius: var(--radius);
+  padding: 0.8rem 1rem;
+  outline: none;
+  transition: border-color 0.2s;
+  margin-bottom: 0.8rem;
+}
+.mural-input:focus { border-color: var(--gold); }
+.mural-ref-input {
+  width: 100%;
+  font-family: 'Jost', sans-serif;
+  font-size: 12px; font-weight: 300;
+  color: var(--muted);
+  background: var(--cream);
+  border: 0.5px solid var(--line);
+  border-radius: var(--radius);
+  padding: 0.6rem 1rem;
+  outline: none;
+  margin-bottom: 0.8rem;
+  transition: border-color 0.2s;
+}
+.mural-ref-input:focus { border-color: var(--gold); }
+.mural-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
+}
+.mural-card {
+  background: var(--white);
+  border: 0.5px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.2rem 1.2rem 1rem;
+  position: relative;
+}
+.mural-card .mc-verse {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 15px; font-style: italic;
+  color: var(--ink-soft); line-height: 1.6;
+  margin-bottom: 0.5rem;
+}
+.mural-card .mc-ref {
+  font-size: 10px; color: var(--muted);
+  letter-spacing: 1px; font-weight: 300;
+}
+.mural-card .mc-del {
+  position: absolute; top: 0.6rem; right: 0.6rem;
+  background: none; border: none;
+  font-size: 12px; color: var(--muted-light);
+  cursor: pointer; padding: 2px 4px;
+  transition: color 0.15s;
+}
+.mural-card .mc-del:hover { color: #8B2020; }
+
+/* ── PAGE TITLES ── */
+.page-title {
+  margin-bottom: 2.5rem;
+}
+.page-title h1 {
+  font-size: 32px; font-weight: 300;
+  color: var(--ink); margin-bottom: 0.3rem;
+}
+.page-title p {
+  font-size: 13px; color: var(--muted);
+  font-weight: 300;
+}
+
+/* ── OVERLAY (mobile sidebar) ── */
+.sidebar-overlay {
+  display: none;
+  position: fixed; inset: 0;
+  background: rgba(44,36,32,0.3);
+  z-index: 99;
+}
+.sidebar-overlay.show { display: block; }
+
+/* ══════════════════════════════
+   TABLET  (769px – 1024px)
+   Sidebar estreita, conteúdo comprimido
+══════════════════════════════ */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .sidebar { width: 200px; }
+  .sidebar-logo h2 { font-size: 15px; }
+  .nav-item span { font-size: 11px; }
+
+  .main {
+    margin-left: 200px;
+    max-width: calc(100% - 200px);
+    padding: 2rem 1.8rem;
+  }
+
+  .stats-row { grid-template-columns: 1fr 1fr 1fr; gap: 0.75rem; }
+  .stat-card .s-num { font-size: 32px; }
+
+  .blocks-grid { grid-template-columns: repeat(3, 1fr); gap: 0.75rem; }
+
+  .day-header-block .dh-num { font-size: 64px; }
+  .day-content { max-width: 100%; }
+
+  .mural-cards { grid-template-columns: repeat(2, 1fr); }
+  .habit-grid { grid-template-columns: repeat(6, 1fr); }
+}
+
+/* ══════════════════════════════
+   MOBILE  (≤ 768px)
+   Sidebar gaveta, layout em coluna única
+══════════════════════════════ */
+@media (max-width: 768px) {
+
+  /* Sidebar vira gaveta deslizante */
+  .sidebar {
+    width: 80vw;
+    max-width: 300px;
+    transform: translateX(-100%);
+    box-shadow: 4px 0 24px rgba(44,36,32,0.12);
+  }
+  .sidebar.open { transform: translateX(0); }
+  .menu-toggle {
+    display: flex;
+    align-items: center; justify-content: center;
+    width: 40px; height: 40px;
+    font-size: 20px;
+  }
+
+  /* Conteúdo principal sem margem lateral */
+  .main {
+    margin-left: 0;
+    max-width: 100%;
+    padding: 4.5rem 1.2rem 5rem; /* bottom generoso p/ scroll */
+  }
+
+  /* Auth — sem corte nas bordas */
+  #auth-screen { padding: 1.2rem; align-items: flex-start; padding-top: 10vh; }
+  .auth-card { padding: 2rem 1.5rem; }
+  .auth-logo h1 { font-size: 22px; }
+
+  /* Dashboard */
+  .dash-greeting h1 { font-size: 26px; }
+  .stats-row {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+  .stats-row .stat-card:last-child { grid-column: span 2; }
+  .stat-card { padding: 1.1rem; }
+  .stat-card .s-num { font-size: 34px; }
+
+  /* Today card */
+  .today-card { padding: 1.4rem; }
+  .today-card .tc-day { font-size: 40px; }
+
+  /* Habit grid — 5 colunas no mobile */
+  .habit-grid { grid-template-columns: repeat(5, 1fr); gap: 5px; }
+
+  /* Navegação do dia — empilha em mobile estreito */
+  .day-nav {
+    flex-wrap: wrap;
+    gap: 0.6rem;
+  }
+  .day-nav-btn {
+    width: 44px; height: 44px; /* área de toque maior */
+    font-size: 18px;
+  }
+  .day-nav-info { order: -1; flex: 0 0 100%; }
+  .btn-mark-done {
+    flex: 1;
+    padding: 0.7rem 1rem;
+    font-size: 9px;
+    min-height: 44px; /* acessibilidade touch */
+  }
+
+  /* Conteúdo do dia */
+  .day-header-block .dh-num { font-size: 48px; }
+  .day-header-block .dh-title { font-size: 22px; }
+  .day-content { max-width: 100%; }
+  .content-section { padding: 1.2rem 1rem; }
+  .verse-text { font-size: 19px; }
+  .reflection-text { font-size: 14px; line-height: 1.8; }
+  .prayer-text { font-size: 15px; }
+
+  /* Journal */
+  .journal-area { font-size: 16px; min-height: 120px; }
+  .btn-save-journal {
+    padding: 0.7rem 1.5rem;
+    min-height: 44px;
+    font-size: 9px;
+  }
+
+  /* Blocos */
+  .blocks-grid { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
+  .bc-roman { font-size: 28px; }
+  .bc-title { font-size: 12px; }
+
+  /* Mural */
+  .mural-cards { grid-template-columns: 1fr; }
+  .mural-input { font-size: 15px; }
+
+  /* Page title */
+  .page-title h1 { font-size: 26px; }
+}
+
+/* ══════════════════════════════
+   MOBILE MUITO PEQUENO  (≤ 360px)
+   Ex: iPhone SE, Galaxy A series antigos
+══════════════════════════════ */
+@media (max-width: 360px) {
+  .main { padding: 4.5rem 1rem 5rem; }
+  .stats-row { grid-template-columns: 1fr; }
+  .stats-row .stat-card:last-child { grid-column: auto; }
+  .blocks-grid { grid-template-columns: 1fr; }
+  .auth-card { padding: 1.6rem 1.2rem; }
+  .day-nav-btn { width: 40px; height: 40px; }
+  .habit-grid { grid-template-columns: repeat(4, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="l-inner">
+    <div class="l-ornament">· · ·</div>
+    <div class="l-title serif">Devocional Atemporal</div>
+  </div>
+</div>
+
+<!-- AUTH -->
+<div id="auth-screen" class="hidden">
+  <div class="auth-card">
+    <div class="auth-logo">
+      <span class="ornament">· · ·</span>
+      <h1>Devocional<br>Atemporal</h1>
+      <p>365 dias · sua jornada começa hoje</p>
+    </div>
+    <div class="auth-tabs">
+      <button class="auth-tab active" id="tab-login" onclick="switchTab('login')">Entrar</button>
+      <button class="auth-tab" id="tab-register" onclick="switchTab('register')">Criar conta</button>
+    </div>
+    <div id="auth-error" class="auth-error"></div>
+    <div id="form-login">
+      <div class="form-group">
+        <label>E-mail</label>
+        <input type="email" id="login-email" placeholder="seu@email.com">
+      </div>
+      <div class="form-group">
+        <label>Senha</label>
+        <input type="password" id="login-password" placeholder="••••••••">
+      </div>
+      <button class="btn-primary" id="btn-login" onclick="doLogin()">Entrar</button>
+    </div>
+    <div id="form-register" class="hidden">
+      <div class="form-group">
+        <label>Nome</label>
+        <input type="text" id="reg-name" placeholder="Seu nome">
+      </div>
+      <div class="form-group">
+        <label>E-mail</label>
+        <input type="email" id="reg-email" placeholder="seu@email.com">
+      </div>
+      <div class="form-group">
+        <label>Senha</label>
+        <input type="password" id="reg-password" placeholder="Mínimo 6 caracteres">
+      </div>
+      <button class="btn-primary" id="btn-register" onclick="doRegister()">Criar minha conta</button>
+    </div>
+  </div>
+</div>
+
+<!-- APP -->
+<button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+<div class="sidebar-overlay" id="overlay" onclick="toggleSidebar()"></div>
+
+<div id="app">
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      <span class="s-ornament">· · ·</span>
+      <h2>Devocional<br>Atemporal</h2>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="nav-section-label">Início</div>
+      <div class="nav-item active" onclick="showView('dashboard')" id="nav-dashboard">
+        <span class="nav-icon">◇</span>
+        <span>Painel</span>
+      </div>
+      <div class="nav-item" onclick="showView('today')" id="nav-today">
+        <span class="nav-icon">○</span>
+        <span>Dia de hoje</span>
+      </div>
+      <div class="nav-section-label">Jornada</div>
+      <div class="nav-item" onclick="showView('blocks')" id="nav-blocks">
+        <span class="nav-icon">▫</span>
+        <span>Blocos</span>
+      </div>
+      <div class="nav-item" onclick="showView('mural')" id="nav-mural">
+        <span class="nav-icon">◈</span>
+        <span>Mural de Palavras</span>
+      </div>
+    </nav>
+    <div class="sidebar-footer">
+      <div class="user-info">
+        <div class="user-avatar" id="user-avatar">?</div>
+        <div class="user-email" id="user-email-display">—</div>
+      </div>
+      <button class="btn-logout" onclick="doLogout()">Sair</button>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+
+    <!-- DASHBOARD -->
+    <div class="view active" id="view-dashboard">
+      <div class="dash-greeting">
+        <div class="label g-label">Bem-vinda de volta</div>
+        <h1 id="dash-greeting-name">Sua jornada<br>continua aqui.</h1>
+        <div class="divider"></div>
+        <p>Cada dia que você abre esta página é um ato de fé. Não importa quanto tempo passou — o próximo dia sempre estará esperando por você.</p>
+      </div>
+
+      <div class="stats-row">
+        <div class="stat-card">
+          <div class="s-num" id="stat-current-day">1</div>
+          <div class="s-label">Dia atual</div>
+        </div>
+        <div class="stat-card">
+          <div class="s-num" id="stat-days-done">0</div>
+          <div class="s-label">Dias concluídos</div>
+        </div>
+        <div class="stat-card">
+          <div class="s-num" id="stat-streak">0</div>
+          <div class="s-label">Dias restantes</div>
+        </div>
+      </div>
+
+      <div class="today-card" onclick="showView('today')">
+        <div class="label tc-label">Continue de onde parou</div>
+        <div class="tc-day" id="dash-day-num">01</div>
+        <div class="tc-block" id="dash-day-block">Bloco I · O Resgate da Identidade</div>
+        <div class="tc-verse" id="dash-day-verse">"Antes de te formar no ventre, eu te conheci."</div>
+        <div class="tc-cta">Ler o devocional de hoje →</div>
+      </div>
+
+      <div class="progress-section">
+        <h3>Progresso da Jornada</h3>
+        <div class="progress-bar-wrap">
+          <div class="progress-bar-fill" id="main-progress-bar" style="width:0%"></div>
+        </div>
+        <div class="progress-label" id="main-progress-label">0 de 365 dias</div>
+      </div>
+
+      <div style="margin-top:2rem">
+        <div class="label" style="margin-bottom:1rem">Rastreador · Bloco Atual</div>
+        <div style="background:var(--white);border:0.5px solid var(--line);border-radius:var(--radius);padding:1.5rem">
+          <div class="habit-grid" id="habit-grid"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TODAY (DAY VIEW) -->
+    <div class="view" id="view-today">
+      <div class="day-nav">
+        <button class="day-nav-btn" onclick="prevDay()">←</button>
+        <div class="day-nav-info">
+          <span class="dn-num" id="day-nav-num">Dia 01</span>
+          <span class="dn-block" id="day-nav-block">Bloco I · O Resgate da Identidade</span>
+        </div>
+        <button class="btn-mark-done" id="btn-mark-done" onclick="toggleDayDone()">Marcar como lido</button>
+        <button class="day-nav-btn" onclick="nextDay()">→</button>
+      </div>
+
+      <div class="day-content" id="day-content">
+        <!-- preenchido por JS -->
+      </div>
+    </div>
+
+    <!-- BLOCKS -->
+    <div class="view" id="view-blocks">
+      <div class="page-title">
+        <div class="label" style="margin-bottom:0.5rem">Sua Jornada</div>
+        <h1>Os 12 Blocos</h1>
+        <p>365 dias organizados em jornadas temáticas. Toque num bloco para explorar.</p>
+      </div>
+      <div class="blocks-grid" id="blocks-grid"></div>
+    </div>
+
+    <!-- MURAL -->
+    <div class="view" id="view-mural">
+      <div class="page-title">
+        <div class="label" style="margin-bottom:0.5rem">Palavras que ficaram</div>
+        <h1>Mural de Palavras</h1>
+        <p>Guarde os versículos que tocaram mais fundo. Eles ficam aqui, esperando por você.</p>
+      </div>
+      <div class="mural-add">
+        <div class="label" style="margin-bottom:0.8rem">Adicionar versículo</div>
+        <textarea class="mural-input" id="mural-verse-input" rows="2" placeholder="Escreva o versículo que marcou sua jornada..."></textarea>
+        <input class="mural-ref-input" id="mural-ref-input" placeholder="Referência (ex: Salmo 23.1)">
+        <button class="btn-save-journal" onclick="addMuralCard()" style="margin-top:0">Guardar no mural</button>
+      </div>
+      <div class="mural-cards" id="mural-cards"></div>
+    </div>
+
+  </main>
+</div>
+
+<!-- FIREBASE SDK -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
+<script>
+// ════════════════════════════════════════
+// CONFIGURAÇÃO FIREBASE
+// ⚠️ Substitua pelos dados do seu projeto Firebase
+// ════════════════════════════════════════
+const firebaseConfig = {
+  apiKey: "SUA_API_KEY",
+  authDomain: "SEU_PROJECT.firebaseapp.com",
+  projectId: "SEU_PROJECT_ID",
+  storageBucket: "SEU_PROJECT.appspot.com",
+  messagingSenderId: "SEU_SENDER_ID",
+  appId: "SEU_APP_ID"
+};
+
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+const db = firebase.firestore();
+
+// ════════════════════════════════════════
+// CONTEÚDO DOS DIAS (Bloco I completo)
+// ════════════════════════════════════════
+const BLOCKS = [
+  { num: 1, title: "O Resgate da Identidade",    start: 1,   end: 30  },
+  { num: 2, title: "O Silêncio que Forma",        start: 31,  end: 60  },
+  { num: 3, title: "As Raízes do Cansaço",        start: 61,  end: 90  },
+  { num: 4, title: "A Graça no Ordinário",        start: 91,  end: 120 },
+  { num: 5, title: "O Desapego Fértil",           start: 121, end: 150 },
+  { num: 6, title: "A Força em Forma de Ternura", start: 151, end: 180 },
+  { num: 7, title: "Os Relacionamentos como Escola", start: 181, end: 210 },
+  { num: 8, title: "O Trabalho como Chamado",     start: 211, end: 240 },
+  { num: 9, title: "O Corpo que Habito",          start: 241, end: 270 },
+  { num: 10, title: "A Fé Madura",                start: 271, end: 300 },
+  { num: 11, title: "A Mulher que Emerge",        start: 301, end: 330 },
+  { num: 12, title: "O Legado que Fica",          start: 331, end: 365 }
+];
+
+const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII'];
+
+const DAYS = {
+  1: {
+    verse: "Antes de te formar no ventre, eu te conheci; antes que saísses da madre, eu te santifiquei.",
+    ref: "Jeremias 1.5",
+    reflection: ["Há dias em que você acorda e, antes mesmo que o primeiro pensamento se forme, já existe um peso. Não é tristeza com causa definida, não é cansaço que uma noite de sono resolve — é algo mais sutil: a sensação de que você perdeu o fio de quem é. A agenda exige. As pessoas esperam. O feed mostra versões polidas de vidas que parecem ter sentido. E você, entre uma tarefa e outra, pergunta em silêncio: e eu, o que sou?","Esta Palavra não é uma resposta fácil para essa pergunta. É algo mais profundo: é um lembrete de que sua identidade não nasceu da sua performance. Ela foi tecida antes de você ter a chance de errar, de decepcionar, de fracassar — ou de acertar. Deus te conheceu antes de você se conhecer.","Começar essa jornada é decidir parar de construir uma identidade de fora para dentro. É escolher — por vezes contra todo o ruído externo — sentar diante do que é eterno em você. Não o que você faz. Não o que você conquistou. O que Deus viu antes de qualquer coisa existir."],
+    questions: ["Quando você tira todas as funções que desempenha — mãe, profissional, filha, parceira — quem resta?","Escreva, sem censura, o que vem quando você pergunta: quem sou eu, quando ninguém está olhando?"],
+    prayer: "Senhor, hoje escolho começar. Não porque estou pronta, mas porque Tu me conheces mesmo quando eu não me reconheço. Ensina-me a descansar na identidade que Tu teceste em mim antes que eu soubesse do meu próprio nome. Que esta jornada seja um retorno ao que sempre fui em Ti."
+  },
+  2: {
+    verse: "Sede quietos e sabei que eu sou Deus.",
+    ref: "Salmo 46.10",
+    reflection: ["Existe uma tirania silenciosa na vida moderna que ninguém nomeia abertamente: a tirania da produtividade constante. Descansar virou algo que precisa ser merecido. Silêncio virou desconforto. Estar parada passou a ser sinônimo de estar ficando para trás. E nessa corrida sem linha de chegada, a mulher vai perdendo o contato com a voz mais importante: a sua própria.","'Sede quietos' — em hebraico, raphah — carrega o sentido de soltar, de afrouxar a tensão. Não é passividade. É um ato de coragem deliberada contra uma cultura que confunde agitação com virtude. Deus não pede que você deixe de existir. Ele pede que você pare de performar existência por um momento — e simplesmente seja.","Quando o silêncio parece ameaçador, é porque há dentro de você algo que precisa ser ouvido e você ainda não teve espaço para ouvi-lo. Hoje, o convite não é resolver nada. É apenas parar."],
+    questions: ["O que acontece dentro de você quando não há nada para fazer? Descreva a sensação — sem julgá-la.","Ela revela algo sobre o que você tem usado para sustentar sua identidade?"],
+    prayer: "Pai, eu solto a necessidade de fazer algo para ser alguém. No silêncio de agora, escolho Te encontrar — não como um item da minha lista, mas como a minha âncora. Ensina-me que quietude não é fraqueza: é onde Tu és mais claramente encontrado."
+  },
+  3: {
+    verse: "Pois Tu formaste os meus rins; Tu me teceste no ventre de minha mãe.",
+    ref: "Salmo 139.13",
+    reflection: ["Você já parou para perceber como a auto-crítica chegou com tanta naturalidade? A voz interna que aponta seus defeitos antes que qualquer outra pessoa perceba. O olho que encontra no espelho o que não está certo antes de ver o que está. Essa voz foi aprendida — não foi a primeira voz que falou sobre você.","A primeira voz que falou sobre você disse: eu te teci. A escolha da palavra é teológica e poética ao mesmo tempo: tecer é um ato intencional, lento, que exige atenção a cada fio. Você não foi fabricada em série. Você foi feita com cuidado específico.","Isso não dissolve as suas feridas. Não apaga as partes de você que você ainda não compreende. Mas coloca uma fundação sob tudo: antes da sua história, havia uma intenção. Antes do que você virou, havia o que você foi feita para ser."],
+    questions: ["Qual aspecto de quem você é — físico, emocional ou de personalidade — você mais resiste a aceitar?","Escreva uma frase de reconciliação com esse aspecto, como se você o visse pela perspectiva de quem te criou com intenção."],
+    prayer: "Deus, obrigada por me ter feito com intenção. Hoje, escolho acreditar que o que está em mim não foi engano — foi projeto. Cuida das partes de mim que ainda não consigo amar. Que eu aprenda a ver o que Tu fizeste e chamar de bom."
+  },
+  4: {
+    verse: "Não andeis ansiosos por nada.",
+    ref: "Filipenses 4.6",
+    reflection: ["A ansiedade da mulher moderna tem endereço certo: o futuro. Não um futuro distante de tragédias — mas o de amanhã, o da próxima semana, o da próxima conversa difícil. A mente que não descansa viaja constantemente para cenários que ainda não existem, carregando um peso que não foi dado para ser carregado hoje.","Paulo escreveu essas palavras de dentro de uma prisão. Isso importa. Ele não estava em um retiro espiritual quando encontrou a paz. Estava em uma situação onde o futuro era literalmente incerto. E mesmo assim, escreveu: não andeis ansiosos por nada. Não porque o problema não existia — mas porque encontrou algo mais sólido: a presença de Deus no presente.","A ansiedade nos pede que controlemos o que não controlamos. A fé nos convida a habitarmos o único tempo que existe de verdade: agora. Não é negação da realidade — é a decisão de não deixar que o amanhã imaginário roube o hoje real."],
+    questions: ["O que você está carregando hoje que pertence ao futuro — e não ao momento presente?","Escreva esses pesos e, ao lado de cada um, escreva: 'este não é meu para carregar hoje.'"],
+    prayer: "Senhor, Te apresento o que está pesando em mim agora. Não porque tenho fé perfeita, mas porque escolho confiar que Tu já estás no amanhã que me assusta. Guarda minha mente e meu coração. Que eu habite este dia com presença real."
+  },
+  5: {
+    verse: "Deus não nos deu espírito de covardia, mas de poder, de amor e de moderação.",
+    ref: "2 Timóteo 1.7",
+    reflection: ["O medo disfarça muito bem. Ele se apresenta como prudência quando está paralisando. Aparece como humildade quando está impedindo. Chama a si mesmo de responsabilidade quando está encolhendo. A mulher que foi criada com dons e chamados frequentemente vive aquém do que poderia ser — não por falta de capacidade, mas por ter aprendido a negociar com o medo de maneira tão íntima que já não percebe quando ele está na mesa.","Paulo lembra Timóteo de que o espírito de covardia não tem origem divina. Isso é libertador e exigente ao mesmo tempo: libertador porque o medo que paralisa não é a voz de Deus te protegendo. Exigente porque tira o medo do posto de conselheiro legítimo que ele usurpou.","Poder, amor e moderação: uma tríade que não combina com excesso, nem com compulsão. É a imagem de uma mulher que age com força, cuida com intenção e conhece seus limites sem que eles sejam impostos pelo medo. Essa é a descrição do seu espírito original."],
+    questions: ["Em qual área da sua vida o medo tem se disfarçado de sabedoria?","O que você teria feito de diferente se soubesse, com certeza, que o espírito dentro de você é de poder — não de covardia?"],
+    prayer: "Pai, expõe em mim o medo que se esconde atrás de palavras razoáveis. Quero agir a partir do espírito que Tu me deste — não do que aprendi com as deceções acumuladas. Que o poder, o amor e a moderação que vêm de Ti sejam mais reais em mim do que qualquer voz que me diminui."
+  },
+  6: {
+    verse: "Sou a videira verdadeira, e meu Pai é o agricultor.",
+    ref: "João 15.1",
+    reflection: ["Vivemos numa cultura que glorifica a autossuficiência. A mulher que não precisa de ninguém, que se construiu sozinha — essa é a heroína contemporânea. E há algo valoroso nisso. Mas há também uma armadilha: a ilusão de que crescimento é algo que se faz por conta própria.","Jesus usa a imagem de uma videira com intenção específica: um ramo separado do tronco não murcha imediatamente. Ele mantém a aparência por um tempo. Continua parecendo verde. Mas não produz nada. Não porque seja deficiente — mas porque produção exige conexão com a fonte.","Dependência não é fraqueza quando a fonte é o Eterno. Reconhecer que você precisa permanecer conectada não é admitir incapacidade — é entender como você foi desenhada para funcionar. O fruto da sua vida não nasce do esforço da sua vontade. Nasce da qualidade da sua permanência."],
+    questions: ["O que em você tem parecido produtivo mas está, na verdade, separado de qualquer fonte mais profunda?","Em que área da vida você tem tentado frutificar por força própria, sem conexão real com Deus?"],
+    prayer: "Senhor, não quero ser ramo que apenas aparenta. Quero produzir o que só é possível quando estou em Ti. Que a minha dependência de Ti não seja vergonha, mas sabedoria. Ensina-me a permanecer quando tudo em mim quer apenas agir."
+  },
+  7: {
+    verse: "O Senhor é o meu pastor; nada me faltará.",
+    ref: "Salmo 23.1",
+    reflection: ["Há uma fome que não é saciada pela conquista. Você a conhece: é a que permanece depois de alcançar o que queria, a que aparece em meio às coisas boas quando você percebe que elas não preenchem o que prometiam. É a fome que não tem nome na prateleira de soluções modernas.","'Nada me faltará' — essa não é uma promessa de abundância material. É uma declaração sobre a qualidade de um relacionamento. Um pastor que conhece suas ovelhas as conduz ao que elas precisam, não necessariamente ao que elas desejam no momento.","Confiar que nada faltará não é ingenuidade — é a decisão de não deixar que a ansiedade da escassez defina suas escolhas. É viver a partir de uma provisão que não depende dos seus cálculos. A fome que permanece depois de tudo tem um nome: ela está à procura do Pastor."],
+    questions: ["O que você tem mais temido que falte — seja concreto ou emocional?","Como esse medo tem influenciado suas decisões? O que seria diferente se você vivesse a partir da certeza de que é cuidada?"],
+    prayer: "Senhor, confio hoje no Teu cuidado — mesmo onde ainda não consigo ver a provisão. Que o medo da escassez não governe o que faço ou o que evito. Que eu conheça, na prática, o que significa ter Te como meu pastor."
+  },
+  8: {
+    verse: "Vinde a mim, todos os que estais cansados e sobrecarregados, e eu vos darei descanso.",
+    ref: "Mateus 11.28",
+    reflection: ["Existe um cansaço que você não consegue nomear no médico, não aparece em nenhum exame — mas está presente em tudo. É o cansaço de sustentar uma versão de si mesma que exige demasiado. De ser boa o suficiente para todos, ao mesmo tempo. De carregar expectativas que nunca foram suas, mas que você adotou tão cedo que já não lembra de antes delas.","Jesus não convida os bem-descansados. Ele convida os cansados — e o convite é simples ao ponto de ser suspeito: vinde. Não: primeiro arrume isso. Não: quando estiver melhor. A promessa do descanso não está condicionada à sua melhoria — está condicionada à sua chegada.","O peso que Ele oferece em troca é descrito como leve. Não como nenhum — mas como leve. Há responsabilidades reais. Mas há uma diferença fundamental entre o peso que foi dado para você e o peso que você simplesmente nunca deixou cair."],
+    questions: ["Liste, com honestidade, o que você está carregando agora. Ao lado de cada item, escreva: 'foi me dado' ou 'eu assumi'.","O que você percebe nessa separação?"],
+    prayer: "Jesus, venho como estou — cansada do que construí e do que carreguei. Não te peço que remova todas as responsabilidades, mas que me mostre a diferença entre o que é meu e o que é pesado demais porque não era para mim. Que eu aprenda o Teu ritmo."
+  },
+  9: {
+    verse: "Porque sou eu que conheço os planos que tenho para vós, diz o Senhor, planos de paz e não de mal, para vos dar um futuro e uma esperança.",
+    ref: "Jeremias 29.11",
+    reflection: ["Esta promessa foi escrita para um povo no exílio. Não para um povo no conforto, aguardando confirmação de que as coisas vão continuar bem. Foi escrita para quem estava longe de casa, em terra estranha, sem saber quando — ou se — voltaria. Esse contexto muda tudo: a esperança aqui não é superficial.","Você talvez conheça essa sensação de exílio sem ter saído do lugar. Quando a vida que você imaginou não se materializa. Quando o capítulo se estende além do previsto. Quando você olha para onde está e não reconhece o caminho de volta para quem deveria ser.","Para esse povo — e para você — a promessa não é de que tudo se resolverá amanhã. É de que existe um arquiteto que conhece o projeto completo. E o projeto tem integridade: paz, não mal. Futuro. Esperança. Não há promessa de velocidade. Há promessa de direção."],
+    questions: ["Em que área da sua vida você mais sente que está em 'exílio' — fora do lugar que esperava estar?","O que mudaria na sua postura diante disso se você realmente acreditasse que há um plano com integridade por trás do que não faz sentido agora?"],
+    prayer: "Deus dos planos, hoje escolho confiar no que não vejo. Não porque a espera seja fácil, mas porque Tu conheces o que eu não conheço. Sustenta minha esperança nos dias em que ela parece ingênua. Que o Teu futuro para mim seja mais real do que meu presente confuso."
+  },
+  10: {
+    verse: "E conhecereis a verdade, e a verdade vos libertará.",
+    ref: "João 8.32",
+    reflection: ["Libertação, neste versículo, não começa com uma mudança de circunstância. Começa com um encontro com a verdade. E isso é mais perturbador do que parece, porque presume que existe algo em nós que prefere a mentira — a mentira confortável sobre quem somos, sobre por que fazemos o que fazemos.","A mulher que carrega versões falsas de si mesma não o faz por fraqueza de caráter. Faz porque em algum momento foi mais seguro adaptar-se do que permanecer inteira. Aprendeu que ser amada exigia ser diferente. E essas adaptações se tornaram identidade — tão costuradas ao eu que já não parecem roupa emprestada, mas pele.","A verdade que liberta não é cruel. Ela não chega para acusar — chega para restaurar. Mas ela exige que você a olhe de frente, sem os filtros que o autoengano oferece."],
+    questions: ["Existe uma versão de você que você apresenta ao mundo que não é completamente verdadeira?","O que ela esconde — e por quê? Escreva com a suposição de que esta página é um lugar seguro para a verdade."],
+    prayer: "Senhor da verdade, tenho medo do que posso encontrar quando paro de me proteger com meias verdades. Mas quero ser livre mais do que quero estar confortável. Conduz-me ao conhecimento de mim mesma que liberta — e faz isso com a gentileza que só Tu tens."
+  },
+  11: {
+    verse: "Criou Deus o homem à sua imagem; à imagem de Deus o criou.",
+    ref: "Gênesis 1.27",
+    reflection: ["Imago Dei — a imagem de Deus em você. Não como conceito teológico abstrato, mas como declaração sobre o que você carrega em sua constituição mais fundamental. Antes de qualquer rótulo, antes de qualquer falha, antes de qualquer conquista: você porta a imagem do Eterno.","O problema não é que as mulheres não acreditam nisso intelectualmente. A maioria acredita. O problema é que é muito difícil viver a partir do que você acredita quando o ambiente ao redor repete — em mil formas sutis — que seu valor é condicional.","Carregar a imagem de Deus não é um elogio de marketing espiritual. É uma responsabilidade e uma proteção. Proteção: ninguém pode te reduzir ao que você não é. Responsabilidade: você é chamada a viver de uma forma que essa imagem não seja obscurecida."],
+    questions: ["Se você de fato carrega a imagem de Deus, o que isso diz sobre como você deveria se tratar?","Em que situações concretas — com você mesma, com seu corpo, com seus limites — você tem agido como se não carregasse esse valor?"],
+    prayer: "Criador, obrigada por não me fazer ao acaso. Que o conhecimento de ser Tua imagem não seja apenas crença intelectual — que ele mude o tom da voz que fala comigo mesma. Que eu me trate com a dignidade que pertence a quem Te reflete."
+  },
+  12: {
+    verse: "O Senhor te guiará continuamente.",
+    ref: "Isaías 58.11",
+    reflection: ["Há uma diferença profunda entre ser guiada e ser controlada. A mulher que cresceu em ambientes onde o controle se disfarçava de cuidado talvez tenha confundido as duas coisas — e desenvolvido uma resistência saudável a qualquer forma de liderança sobre sua vida, incluindo a divina. Mas a guia de que fala Isaías não restringe: ela orienta.","'Continuamente' — a palavra importa. Não apenas nos momentos de crise. Não apenas nas grandes decisões. Continuamente: nos dias cinzentos em que nada parece urgente mas tudo parece pesado.","Ser guiada pressupõe que você aceite não saber tudo — e isso, para a mulher que aprendeu que sobreviver exige antecipar cada passo, pode ser o maior ato de fé disponível. A guia não é para quem já conhece o caminho. É para quem confia no Guia mais do que nos próprios mapas."],
+    questions: ["Em qual decisão ou área da vida você mais sente que está navegando sozinha — sem direção clara?","O que impede você de buscar orientação nessa área?"],
+    prayer: "Senhor, não quero mais navegar por força bruta. Que a Tua guia seja concreta no meu dia a dia — não apenas nas crises. Ensina-me a reconhecer Tua voz. Que eu siga não porque entendo tudo, mas porque confio em quem guia."
+  },
+  13: {
+    verse: "O amor não perece jamais.",
+    ref: "1 Coríntios 13.8",
+    reflection: ["Você já notou quantas das suas ansiedades mais profundas têm a ver com perda? Perda de amor, de pertencimento, de aprovação. A mulher que aprendeu que o afeto é condicional desenvolve uma vigilância constante. Uma antena permanentemente ligada para captar sinais de rejeição.","Paulo escreve isso em meio a uma lista do que cessará: profecias, línguas, conhecimento. Tudo o que parece permanente e poderoso tem um prazo. Exceto o amor. Não perece jamais. O amor descrito aqui não é o que você sente — é o que Deus é.","Isso não resolve o fato de que pessoas te decepcionaram. Não apaga o que foi dito ou o que não foi dito quando precisava. Mas oferece algo que a experiência humana não pode: uma fonte de amor que não tem fundo, que não te descarta quando você não corresponde."],
+    questions: ["Como o medo de perder o amor ou a aprovação das pessoas influencia as suas escolhas diárias?","Escreva sobre uma situação recente em que agiu a partir desse medo. O que você teria feito diferente?"],
+    prayer: "Deus que és amor, cura a parte de mim que ainda acredita que Teu afeto é condicional. Que o amor que não perece seja mais real para mim do que todos os amores que me falharam. Que eu não viva mais gerenciando medo de ser descartada."
+  },
+  14: {
+    verse: "Eu vim para que tenham vida e a tenham em abundância.",
+    ref: "João 10.10",
+    reflection: ["A palavra grega aqui é perissós — não apenas vida suficiente, mas vida que transborda. Não é sobre prosperidade material. Jesus está falando sobre qualidade de existência. Sobre viver com a plenitude de quem conhece seu valor, sua direção, sua fonte.","Mas antes dessa frase, há outra: o ladrão vem para roubar, matar e destruir. E o ladrão não rouba com brutalidade — ele se disfarça. Em expectativas que definem seu valor pela produção. Em narrativas internas que repetem que você nunca é o suficiente.","Abundância não é ausência de dificuldade. É a qualidade de estar viva em sua totalidade. É poder sentir alegria sem culpa. Descansar sem ansiedade. Existir sem ter que justificar constantemente o espaço que ocupa."],
+    questions: ["O que foi 'roubado' da sua vitalidade — seja por circunstâncias, por pessoas ou por narrativas que internalizou?","Como seria uma semana vivida com o que foi prometido: vida abundante, que transborda?"],
+    prayer: "Jesus, quero a vida que Tu vieste trazer — não apenas sobrevivência espiritual. Mostra-me o que foi roubado e o que posso reivindicar de volta. Que eu não me acostume com menos do que foi prometido."
+  },
+  15: {
+    verse: "Sede fortes e corajosas. Não temais, nem vos assusteis, porque o Senhor, vosso Deus, é quem anda convosco.",
+    ref: "Deuteronômio 31.6",
+    reflection: ["Você está na metade do primeiro bloco desta jornada. Quinze dias de presença com o que está dentro de você — e talvez já tenha encontrado coisas que não esperava: resistências, emoções que dormiam, verdades que preferia não nomear. Isso é parte do processo. A coragem que este versículo convoca não é a coragem de não sentir medo. É a coragem de continuar mesmo sentindo.","Moisés fala a um povo que estava prestes a enfrentar algo absolutamente novo. E a base do encorajamento não é 'você consegue' — é 'Deus vai com você'. Essa é uma diferença fundamental para a mulher que foi criada acreditando que a força vem exclusivamente de dentro.","Força e coragem não nascem do autoconhecimento isolado. Nascem da consciência de companhia. Continue. O que está sendo encontrado aqui é necessário. E você não está sozinha nesta travessia."],
+    questions: ["O que esta primeira metade da jornada revelou sobre você que não esperava encontrar?","Escreva uma carta para si mesma: o que você diria à versão de você que começou no Dia 01?"],
+    prayer: "Senhor, obrigada por caminhar comigo nos quinze dias que vieram. Nos que vêm, que eu não precise ser mais forte do que sou — apenas ciente de que Tu és mais do que suficiente. Que o meu medo não me paralise. Que a Tua presença me mova."
+  },
+  16: {
+    verse: "Mas tu, quando orares, entra no teu quarto, fecha a porta e ora a teu Pai que está em secreto.",
+    ref: "Mateus 6.6",
+    reflection: ["Há algo subversivo neste versículo numa era de espiritualidade performática. O scroll das redes sociais está cheio de devocionais públicos, testemunhos bem editados, fé exposta em formatos consumíveis. E tudo isso pode ser genuíno — mas também pode ser mais uma performance para uma audiência.","Jesus não pede que a fé seja secreta para sempre — pede que ela tenha um quarto. Um lugar onde a relação não é mediada pelo olhar alheio. Onde você não precisa ser eloquente na oração. Onde a dúvida pode ser dita sem medo de decepcionar.","A vida espiritual que não tem esse quarto fica superficial rapidamente. Bonita por fora, vazia por dentro. O quarto fechado é o lugar onde você pode ser completamente quem é — e descobrir que isso é suficiente."],
+    questions: ["Qual é a qualidade da sua vida espiritual quando ninguém está observando?","Existe uma diferença entre quem você é em público espiritual e quem você é no silêncio?"],
+    prayer: "Pai que vê em secreto, quero Te encontrar fora do palco. Aqui, neste quarto da minha alma, não tenho nada para mostrar — só o que sou. Recebe isso. Que este lugar de encontro privado seja onde eu aprendo a ser mais real do que em qualquer outro lugar."
+  },
+  17: {
+    verse: "A paz de Deus, que excede todo o entendimento, guardará os vossos corações e as vossas mentes.",
+    ref: "Filipenses 4.7",
+    reflection: ["A mente que processa tudo — que antecipa, que planeja, que resolve — é uma ferramenta extraordinária. E é também uma das principais fontes de sofrimento da mulher moderna. Porque a mente analítica não sabe quando parar. Continua funcionando mesmo quando não há problema a resolver.","A paz descrita aqui não é a ausência de problemas — é algo que 'excede o entendimento'. Isso significa que ela não pode ser alcançada pelo mesmo instrumento que gera a ansiedade: a razão. Não há argumento que instale paz duradoura.","'Guardará os vossos corações e as vossas mentes' — a ordem é intencional: coração primeiro, depois mente. Porque a paz começa num lugar mais profundo do que o pensamento. E quando esse centro é guardado, a mente que orbita ao redor dele finalmente encontra onde repousar."],
+    questions: ["Quando sua mente começa a girar — antecipando, repassando — qual é o gatilho mais comum?","O que acontece no seu corpo quando esse processo começa? O que significaria para você receber, em vez de produzir, paz?"],
+    prayer: "Deus da paz, não consigo criar o que estou precisando. Então venho receber. Guarda meu coração — essa parte de mim que sente antes de pensar. Que a Tua paz faça morada onde o medo costuma habitar."
+  },
+  18: {
+    verse: "Aprendei de mim, que sou manso e humilde de coração.",
+    ref: "Mateus 11.29",
+    reflection: ["Mansidão foi mal traduzida pela cultura religiosa por muito tempo. Tornou-se sinônimo de passividade, de engolir, de não ocupar espaço. E por isso mulheres que são fortes, assertivas, opinativas frequentemente se sentiam em tensão com esse ensinamento.","A palavra grega praus — traduzida como manso — era usada para descrever um cavalo selvagem domado para o combate. Não um animal sem força: um animal que aprendeu a direcionar sua força. A mansidão de Jesus não era fraqueza. Era poder sob controle.","E a humildade de coração não é a humilhação performática que pede desculpas por existir. É o conhecimento honesto de si mesma: nem menos do que é, nem mais do que é. A mulher que se conhece verdadeiramente habita uma leveza que não depende de aprovação externa."],
+    questions: ["Como você distingue, na sua vida, entre mansidão genuína e apagamento?","Onde você tem confundido humildade com não ocupar o espaço que é seu?"],
+    prayer: "Jesus, ensina-me a mansidão que é força direcionada, não ausência de força. Quero aprender o Teu ritmo — não a caricatura religiosa dele. Que eu habite meu espaço com inteireza, sem arrogância e sem desculpas."
+  },
+  19: {
+    verse: "Bem-aventurados os puros de coração, porque eles verão a Deus.",
+    ref: "Mateus 5.8",
+    reflection: ["Pureza de coração, no Sermão do Monte, não é inocência naïve nem ausência de complexidade interior. A palavra grega katharos era usada para metal refinado — o que passou pelo fogo e saiu sem mistura. Um coração puro não é um coração que nunca sentiu raiva, ambivalência, dúvida. É um coração que foi honesto sobre o que contém.","Há uma conexão específica aqui entre a pureza interna e a capacidade de ver Deus. O que impede muitas pessoas de perceber a presença divina não é ausência de Deus — é a quantidade de ruído e autoengano que bloqueia a percepção.","Trabalhar pela integridade interior não é um projeto de perfeição moral. É a limpeza gradual das lentes através das quais você percebe o que é real."],
+    questions: ["Em qual área do seu coração há mais 'mistura' — onde você deseja uma coisa mas age em direção a outra?","Escreva sobre essa divisão com honestidade, sem julgamento. O que seria necessário para integrar essas partes?"],
+    prayer: "Senhor, refina o que há de misturado em mim. Não pela vergonha, mas pela clareza. Quero ver — a Ti, a mim mesma, ao que é verdadeiro — sem o véu do autoengano. Que meu coração se unifique ao redor do que realmente importa."
+  },
+  20: {
+    verse: "Porque onde estiver o vosso tesouro, aí estará também o vosso coração.",
+    ref: "Mateus 6.21",
+    reflection: ["O coração segue o tesouro — não o contrário. Jesus inverte a ordem que a intuição humana sugere: não é que você tem sentimentos profundos por algo porque seu coração naturalmente o escolheu. É que você passou a valorizar o que você investiu. Tempo, energia, atenção — onde essas coisas vão, o coração vai junto.","Isso é revelador e um pouco perturbador. Porque significa que a vida emocional não é apenas algo que acontece com você — ela é moldada pelas suas escolhas de investimento. A mulher que gasta suas energias primárias tentando gerir a opinião alheia vai encontrar seu coração preso a essa gestão.","E o inverso também é verdade: quando você começa a investir no que é eterno — no relacionamento com Deus, no autoconhecimento, na presença real com as pessoas que ama — seu coração começa a se reorientar."],
+    questions: ["Se alguém analisasse objetivamente onde vai sua energia — seu tempo de qualidade, sua atenção genuína — o que concluiria sobre o seu tesouro real?","Isso está alinhado com o que você diz que valoriza?"],
+    prayer: "Pai, mostra-me onde o meu coração realmente está. Não onde eu digo que está — onde os meus investimentos reais apontam. E ajuda-me a realinhar, devagar e com honestidade, o que honro com meu tempo."
+  },
+  21: {
+    verse: "Tu guardarás em perfeita paz aquele cujo espírito está firme em Ti.",
+    ref: "Isaías 26.3",
+    reflection: ["Três semanas nesta jornada. Vinte e um dias de encontro com o que está dentro de você. A paz não é um estado estático que se alcança e se mantém sem esforço. É mais como uma bússola que precisa ser reorientada: o mundo empurra para um lado, o ruído para outro, e a firmeza não é rigidez — é o ato recorrente de retornar ao centro.","'Firme em Ti' — o hebraico samak sugere apoiar-se, encostar-se em. Como quem encontra uma parede sólida num quarto que oscila. Não é uma firmeza gerada pelo esforço da vontade — é a firmeza de quem encontrou onde pousar o peso.","Perfeita paz — shalom shalom, a palavra dobrada para indicar intensidade — não é paz pela metade. É inteireza. A sensação de que mesmo no meio do que oscila, algo no centro não se move. E esse centro não está dentro da sua força de vontade."],
+    questions: ["O que você usa atualmente para 'firmar' sua mente quando o mundo começa a oscilar?","Essas âncoras estão funcionando? O que seria diferente se o seu ponto de firmeza principal fosse uma Pessoa, não uma estratégia?"],
+    prayer: "Senhor, eu me firmo em Ti hoje — não porque sou forte, mas porque descobri onde pousar o peso. Que o meu espírito aprenda o caminho de volta a Ti sempre que começar a oscilar. Que a paz que guardas seja minha âncora, não minha conquista."
+  },
+  22: {
+    verse: "Mas Maria guardava todas estas palavras e as meditava no seu coração.",
+    ref: "Lucas 2.19",
+    reflection: ["Num mundo de respostas rápidas e opiniões instantâneas, Maria oferece um modelo radicalmente subversivo: guardar. Não publicar, não interpretar imediatamente, não resolver — guardar e meditar. Deixar que a experiência desça do entendimento imediato para camadas mais profundas.","Ela acabara de atravessar uma das noites mais extraordinárias da história humana. E ela, diante de tudo isso, não discursou. Guardou. Há uma sabedoria madura nisso que contrasta com a compulsão contemporânea de processar em público.","As mulheres que mais crescem espiritualmente são frequentemente as que aprendem a criar espaço entre a experiência e a interpretação. O coração que guarda é o coração que, com o tempo, percebe mais do que o que a superfície mostrou."],
+    questions: ["Existe alguma experiência recente que você ainda não deu espaço para processar de verdade?","O que acontece quando você para de tentar entender e simplesmente guarda, deixando que o sentido emerja?"],
+    prayer: "Senhor, ensina-me a arte de guardar. De não transformar cada experiência em produto imediato. Que eu aprenda a meditar no sentido de deixar que a Tua verdade desça para as camadas mais fundas. Que o meu coração seja um lugar de recolhimento, não apenas de passagem."
+  },
+  23: {
+    verse: "Alarga o lugar da tua tenda.",
+    ref: "Isaías 54.2",
+    reflection: ["Deus pede a uma mulher estéril que alargue a tenda. Antes do filho, antes da mudança de circunstância, antes de qualquer evidência visível — alarga. Esse é o movimento da fé que antecede a experiência: fazer espaço para o que ainda não existe no campo do visível, mas que já é real no campo do prometido.","Quanto do que você poderia ser já foi reduzido por escolhas de segurança? A tenda pequena não exige muito cuidado. Não assusta. Não é alvo. Mas também não comporta o que foi prometido. Existe uma proteção psicológica em manter o espaço da vida pequeno.","Alargar a tenda é um ato de vulnerabilidade. É declarar, com o próprio movimento, que você acredita que haverá algo para ocupar esse espaço. A pergunta não é se alargar é arriscado. É se você pode continuar se permitindo o conforto do pequeno."],
+    questions: ["Em qual área da sua vida você deliberadamente mantém a tenda pequena — para se proteger da decepção?","O que você teria que acreditar para alargar essa área?"],
+    prayer: "Deus das promessas, dá-me coragem para alargar onde aprendi a encolher. Que o medo da decepção não seja maior do que a fé no que prometeste. Que eu faça espaço para o que ainda não vejo — porque confio em quem o prometeu."
+  },
+  24: {
+    verse: "Não seja o vosso coração turbado; credes em Deus, crede também em mim.",
+    ref: "João 14.1",
+    reflection: ["Jesus pronuncia estas palavras numa noite em que tudo estava prestes a desmoronar. Os discípulos estavam prestes a perder o que tinham construído os últimos três anos da vida ao redor. E Ele, conhecendo completamente o que estava por vir, não diz: não se preocupem, tudo vai ficar bem. Ele diz: não se turbem — creiam.","Há uma distinção importante aqui. A turbação — tarasso em grego — é a agitação das profundezas. Jesus não pede que você não sinta. Pede que não deixe que o que está sentindo governe tudo. O coração pode ser turbado sem ser tomado.","'Credes em Deus, crede também em mim' — a fé aqui não é sentimento de confiança plena. É escolha de orientação. É a decisão de, mesmo no meio da turbação, manter o rosto voltado para quem tem autoridade sobre o que você não controla."],
+    questions: ["Qual é a sua resposta padrão quando o coração começa a ser turbado? Você tende a agir por impulso, a se fechar, a buscar controle?","Como seria a resposta de alguém que sente a turbação mas não é governada por ela?"],
+    prayer: "Jesus, esta noite — seja qual for a noite que estou vivendo — eu escolho crer. Não porque seja fácil, mas porque é a única orientação que faz sentido quando tudo o mais oscila. Guarda o meu coração de ser tomado pelo que sente."
+  },
+  25: {
+    verse: "Buscai primeiro o reino de Deus e a sua justiça, e todas estas coisas vos serão acrescentadas.",
+    ref: "Mateus 6.33",
+    reflection: ["O contexto desta promessa é uma lista de preocupações cotidianas: o que comer, o que beber, o que vestir. Coisas concretas, legítimas. E Jesus não as descarta. Ele reconhece que elas existem — e então reposiciona o que deve vir primeiro.","'Buscai primeiro' não é uma hierarquia de abandono. É uma hierarquia de fundação. O que você coloca na base de tudo determina a qualidade de tudo o que vem depois. Quando o reino de Deus é o fundamento, as outras buscas não desaparecem. Elas se reposicionam.","A mulher que busca primeiro a aprovação vai organizar sua vida toda ao redor disso. A que busca primeiro a segurança vai moldar suas escolhas em função disso. O que é buscado primeiro determina o eixo ao redor do qual tudo gira."],
+    questions: ["Se você fosse observar objetivamente as suas escolhas dos últimos 30 dias — onde foi seu tempo, energia, preocupação prioritária — o que estaria na posição de 'primeiro'?","Onde você gostaria que esse 'primeiro' estivesse?"],
+    prayer: "Pai, reorganiza as minhas prioridades de dentro para fora. Não quero apenas reordenar a agenda — quero que o Teu reino seja genuinamente o que mais importa. Que as outras coisas venham depois desse fundamento. E que eu confie que Tu cuidas do que vem depois."
+  },
+  26: {
+    verse: "Olhai para as aves do céu: não semeiam, não colhem; contudo, vosso Pai celestial as alimenta.",
+    ref: "Mateus 6.26",
+    reflection: ["Há algo levemente irônico neste versículo para a mulher moderna: Jesus usa como exemplo de confiança as criaturas que não produzem. Num mundo que mede valor por entrega, os pássaros que não semeiam nem colhem são o modelo.","Isso não é um argumento contra o trabalho ou o planejamento. Está atacando a ansiedade que nasce da crença de que a sua sobrevivência depende exclusivamente da sua capacidade de produzir. O que está em questão não é se você vai trabalhar — é se você vai viver em alerta constante como se o Pai não existisse no cálculo.","'Vosso Pai celestial as alimenta' — a escolha da palavra Pai é deliberada. Que alimenta não porque as aves merecem, não porque foram suficientemente produtivas — mas porque é a natureza do cuidado paterno prover para os seus. Você é filha."],
+    questions: ["Em qual área da sua vida a ansiedade de produzir está ocupando o espaço que a confiança deveria ter?","Como seria viver essa área com a leveza do que não precisa provar que merece ser cuidado?"],
+    prayer: "Pai, que eu seja mais aves do que planilhas. Que minha confiança no Teu cuidado seja mais forte do que minha compulsão de controlar. Cuida de mim — não porque mereço, mas porque sou Tua."
+  },
+  27: {
+    verse: "Porque eu vivo, vós também vivereis.",
+    ref: "João 14.19",
+    reflection: ["Existe uma teologia da ressurreição que permanece apenas intelectual para muitas mulheres. Sabe-se que Cristo ressuscitou. Afirma-se isso no credo. Mas a vida prática continua organizada como se a morte — dos sonhos, das esperanças, das versões de si mesma — fosse definitiva.","'Porque eu vivo, vós também vivereis' — a vida de Jesus é a fundação da vida da pessoa que crê. Não a vida futura apenas. A vida presente. A capacidade de não ser definida pelos fins. De não se tornar a história das coisas que não deram certo.","Que versões de você morreram ao longo do caminho? A fé não promete que elas voltarão exatamente como eram. Mas promete que o Deus da vida está ativo mesmo no que parece irreversivelmente encerrado."],
+    questions: ["O que em você parece morto ou encerrado — uma esperança, uma crença sobre si mesma, um sonho?","Escreva sobre isso com honestidade. E então, devagar, escreva: 'mas porque Ele vive...' e continue a frase com o que você gostaria de poder acreditar."],
+    prayer: "Jesus vivo, em mim há coisas que tratei como mortas definitivamente. Hoje Te apresento esses sepulcros. Não te peço que me explique o que farás — Te peço que faças o que somente Tu podes. Porque Tu vives, posso viver também."
+  },
+  28: {
+    verse: "Para que sejais filhos do vosso Pai que está nos céus.",
+    ref: "Mateus 5.45",
+    reflection: ["A filiação que Mateus descreve aqui não é jurídica — é de semelhança. Você se torna reconhecivelmente filha na medida em que começa a se parecer com o Pai. E Jesus dá como exemplo concreto não as grandes virtudes religiosas — mas a generosidade indiscriminada com o sol e a chuva que Deus oferece a justos e injustos.","Isso tem implicações incômodas: a identidade de filha se manifesta mais claramente não no que você crê, mas em como você age com quem não merece. Com quem te dececionou. A bondade que é condicionada é a bondade humana.","Isso não é um convite ao apagamento de limites. Bondade não é ausência de fronteiras. O que Jesus pede é que a generosidade não seja transacional. Porque filhos se parecem com o Pai. E o Pai nunca fez da fidelidade uma questão de reciprocidade."],
+    questions: ["Com quem na sua vida você tem dificuldade de ser generosa sem condição — não porque seja malévola, mas porque foi magoada?","Como você gostaria de agir nessa relação se a sua identidade de filha fosse mais real do que a mágoa?"],
+    prayer: "Pai, que a minha bondade não dependa do que recebo em troca. Cura o que em mim só consegue dar quando recebe. Que eu me pareça com Ti — não por esforço moral, mas porque estou tão perto de Ti que começo a refletir o que és."
+  },
+  29: {
+    verse: "Não temas, porque eu te remi; chamei-te pelo teu nome, tu és meu.",
+    ref: "Isaías 43.1",
+    reflection: ["Três afirmações em uma frase: te criou, te remiu, chamou pelo teu nome. Não você como parte de um grupo, não você como caso genérico do tipo humano — você, chamada pelo nome. Há algo absolutamente perturbador na intimidade dessa imagem. O Eterno, infinito, que sustenta o cosmo com uma palavra, conhece o seu nome específico.","O contexto é uma promessa para um povo que estava passando por águas e por fogo — pelas situações exatas que deveriam fazer alguém questionar se ainda era amado. E a resposta divina não é a explicação do porquê das circunstâncias. É a reafirmação da identidade: tu és meu.","Pertencimento é a necessidade mais fundamental da psique humana — e uma das mais feridas. A mulher que nunca teve certeza de que pertencia, que aprendeu que pertencimento precisava ser merecido — essa Palavra não é teologia abstrata. É o que o coração mais profundo espera ouvir."],
+    questions: ["Como a sua história de pertencimento — ou falta dele — moldou a forma como você se relaciona com Deus?","O que muda quando você considera que ser chamada pelo nome não é metáfora, mas a descrição mais precisa da realidade?"],
+    prayer: "Senhor que me chama pelo nome, que eu receba isso no lugar mais fundo do que sou — onde ainda há dúvida sobre se pertenço. Tu me criaste, me remiste, me chamas. Não preciso de mais fundação do que essa."
+  },
+  30: {
+    verse: "Iniciei em vós esta boa obra e a completarei até ao dia de Cristo Jesus.",
+    ref: "Filipenses 1.6",
+    reflection: ["Trinta dias. Um bloco inteiro de encontro com o que está dentro de você. E hoje, no encerramento deste primeiro capítulo, a Palavra é sobre continuidade: o que foi iniciado será completado.","Paulo escreve com uma certeza que não é ingênua. Mas a fundação da sua certeza não está na constância humana: está na fidelidade de quem iniciou. Ele iniciou. Ele completará. O sujeito da obra não é você.","Isso muda tudo sobre como você entra no próximo bloco. Você não precisa ter chegado a algum lugar específico nestas trinta páginas. O processo pertence a Quem o começou. O que você oferece é presença — a disposição de continuar se sentando diante do que é real."],
+    questions: ["O que este primeiro bloco revelou sobre você que você não esperava encontrar?","Escreva uma carta para a versão de você que iniciou no Dia 01. E escreva: o que você carrega para o Bloco II?"],
+    prayer: "Senhor que iniciaste em mim uma boa obra — obrigada. Por cada dia que sentei aqui. Por cada verdade que emergiu. Continua o que começaste. Não me abandones no meio. Que o próximo bloco me encontre mais inteira do que este."
+  }
+};
+
+// Placeholder para dias 31-365 (a expandir)
+for (let i = 31; i <= 365; i++) {
+  if (!DAYS[i]) {
+    const block = BLOCKS.find(b => i >= b.start && i <= b.end);
+    DAYS[i] = {
+      verse: "Em breve disponível.",
+      ref: "",
+      reflection: ["O conteúdo deste dia será disponibilizado em breve. Continue sua jornada nos dias anteriores."],
+      questions: ["Como foi o seu caminho até aqui?"],
+      prayer: "Senhor, obrigada por cada passo dado até hoje. Continua me guiando."
+    };
+  }
+}
+
+// ════════════════════════════════════════
+// ESTADO GLOBAL
+// ════════════════════════════════════════
+let currentUser = null;
+let userData = {
+  currentDay: 1,
+  completedDays: [],
+  journalEntries: {},
+  muralCards: []
+};
+let viewingDay = 1;
+
+// ════════════════════════════════════════
+// AUTH
+// ════════════════════════════════════════
+function switchTab(tab) {
+  document.getElementById('tab-login').classList.toggle('active', tab === 'login');
+  document.getElementById('tab-register').classList.toggle('active', tab === 'register');
+  document.getElementById('form-login').classList.toggle('hidden', tab !== 'login');
+  document.getElementById('form-register').classList.toggle('hidden', tab !== 'register');
+  hideAuthError();
+}
+
+function showAuthError(msg) {
+  const el = document.getElementById('auth-error');
+  el.textContent = msg;
+  el.style.display = 'block';
+}
+function hideAuthError() {
+  document.getElementById('auth-error').style.display = 'none';
+}
+
+async function doLogin() {
+  const email = document.getElementById('login-email').value.trim();
+  const pass = document.getElementById('login-password').value;
+  if (!email || !pass) return showAuthError('Preencha e-mail e senha.');
+  const btn = document.getElementById('btn-login');
+  btn.disabled = true; btn.textContent = '...';
+  try {
+    await auth.signInWithEmailAndPassword(email, pass);
+  } catch(e) {
+    showAuthError(translateFirebaseError(e.code));
+    btn.disabled = false; btn.textContent = 'Entrar';
+  }
+}
+
+async function doRegister() {
+  const name = document.getElementById('reg-name').value.trim();
+  const email = document.getElementById('reg-email').value.trim();
+  const pass = document.getElementById('reg-password').value;
+  if (!name || !email || !pass) return showAuthError('Preencha todos os campos.');
+  if (pass.length < 6) return showAuthError('Senha deve ter ao menos 6 caracteres.');
+  const btn = document.getElementById('btn-register');
+  btn.disabled = true; btn.textContent = '...';
+  try {
+    const cred = await auth.createUserWithEmailAndPassword(email, pass);
+    await cred.user.updateProfile({ displayName: name });
+    await db.collection('users').doc(cred.user.uid).set({
+      name, email, currentDay: 1, completedDays: [], journalEntries: {}, muralCards: [],
+      createdAt: firebase.firestore.FieldValue.serverTimestamp()
+    });
+  } catch(e) {
+    showAuthError(translateFirebaseError(e.code));
+    btn.disabled = false; btn.textContent = 'Criar minha conta';
+  }
+}
+
+function doLogout() { auth.signOut(); }
+
+function translateFirebaseError(code) {
+  const map = {
+    'auth/user-not-found': 'E-mail não encontrado.',
+    'auth/wrong-password': 'Senha incorreta.',
+    'auth/email-already-in-use': 'Este e-mail já está em uso.',
+    'auth/invalid-email': 'E-mail inválido.',
+    'auth/weak-password': 'Senha muito fraca.',
+    'auth/too-many-requests': 'Muitas tentativas. Tente mais tarde.',
+    'auth/invalid-credential': 'Credenciais inválidas. Verifique e-mail e senha.'
+  };
+  return map[code] || 'Ocorreu um erro. Tente novamente.';
+}
+
+// ════════════════════════════════════════
+// FIRESTORE
+// ════════════════════════════════════════
+async function loadUserData(uid) {
+  const doc = await db.collection('users').doc(uid).get();
+  if (doc.exists) {
+    userData = { ...userData, ...doc.data() };
+  } else {
+    await db.collection('users').doc(uid).set({
+      name: currentUser.displayName || '',
+      email: currentUser.email,
+      currentDay: 1, completedDays: [], journalEntries: {}, muralCards: [],
+      createdAt: firebase.firestore.FieldValue.serverTimestamp()
+    });
+  }
+}
+
+async function saveUserData() {
+  if (!currentUser) return;
+  await db.collection('users').doc(currentUser.uid).update({
+    currentDay: userData.currentDay,
+    completedDays: userData.completedDays,
+    journalEntries: userData.journalEntries,
+    muralCards: userData.muralCards
+  });
+}
+
+// ════════════════════════════════════════
+// APP INIT
+// ════════════════════════════════════════
+auth.onAuthStateChanged(async user => {
+  document.getElementById('loader').style.opacity = '0';
+  setTimeout(() => document.getElementById('loader').style.display = 'none', 600);
+
+  if (user) {
+    currentUser = user;
+    await loadUserData(user.uid);
+    viewingDay = userData.currentDay;
+    showApp();
+  } else {
+    currentUser = null;
+    document.getElementById('auth-screen').classList.remove('hidden');
+    document.getElementById('app').style.display = 'none';
+  }
+});
+
+function showApp() {
+  document.getElementById('auth-screen').classList.add('hidden');
+  document.getElementById('app').style.display = 'block';
+
+  // user info
+  const name = currentUser.displayName || currentUser.email;
+  const initials = name.split(' ').map(n=>n[0]).join('').toUpperCase().slice(0,2);
+  document.getElementById('user-avatar').textContent = initials;
+  document.getElementById('user-email-display').textContent = currentUser.email;
+
+  const firstName = (currentUser.displayName || 'Bem-vinda').split(' ')[0];
+  document.getElementById('dash-greeting-name').innerHTML = firstName + ',<br>sua jornada continua aqui.';
+
+  renderDashboard();
+  renderBlocksGrid();
+  renderMural();
+  showView('dashboard');
+}
+
+// ════════════════════════════════════════
+// NAVIGATION
+// ════════════════════════════════════════
+function showView(view) {
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  document.getElementById('view-' + view).classList.add('active');
+  const navEl = document.getElementById('nav-' + view);
+  if (navEl) navEl.classList.add('active');
+
+  if (view === 'today') { viewingDay = userData.currentDay; renderDayView(); }
+  if (view === 'dashboard') renderDashboard();
+
+  // close mobile sidebar
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('overlay').classList.remove('show');
+}
+
+function toggleSidebar() {
+  document.getElementById('sidebar').classList.toggle('open');
+  document.getElementById('overlay').classList.toggle('show');
+}
+
+// ════════════════════════════════════════
+// DASHBOARD
+// ════════════════════════════════════════
+function renderDashboard() {
+  const done = userData.completedDays.length;
+  const current = userData.currentDay;
+
+  document.getElementById('stat-current-day').textContent = String(current).padStart(2,'0');
+  document.getElementById('stat-days-done').textContent = done;
+  document.getElementById('stat-streak').textContent = 365 - done;
+
+  const pct = Math.round((done / 365) * 100);
+  document.getElementById('main-progress-bar').style.width = pct + '%';
+  document.getElementById('main-progress-label').textContent = done + ' de 365 dias';
+
+  // today card
+  document.getElementById('dash-day-num').textContent = String(current).padStart(2,'0');
+  const block = getBlock(current);
+  document.getElementById('dash-day-block').textContent = 'Bloco ' + ROMAN[block.num-1] + ' · ' + block.title;
+  const dayData = DAYS[current];
+  document.getElementById('dash-day-verse').textContent = '"' + dayData.verse.substring(0, 80) + (dayData.verse.length > 80 ? '..."' : '"');
+
+  renderHabitGrid();
+}
+
+function renderHabitGrid() {
+  const block = getBlock(userData.currentDay);
+  const grid = document.getElementById('habit-grid');
+  const days = ['D','S','T','Q','Q','S','S'];
+  let html = days.map(d => `<div class="habit-header">${d}</div>`).join('');
+  for (let i = block.start; i <= block.end; i++) {
+    const done = userData.completedDays.includes(i);
+    html += `<div class="habit-dot ${done ? 'done' : ''}" onclick="toggleHabitDot(${i})" title="Dia ${i}"></div>`;
+  }
+  grid.innerHTML = html;
+}
+
+function toggleHabitDot(day) {
+  const idx = userData.completedDays.indexOf(day);
+  if (idx >= 0) userData.completedDays.splice(idx, 1);
+  else userData.completedDays.push(day);
+  saveUserData();
+  renderDashboard();
+}
+
+// ════════════════════════════════════════
+// DAY VIEW
+// ════════════════════════════════════════
+function getBlock(day) {
+  return BLOCKS.find(b => day >= b.start && day <= b.end) || BLOCKS[0];
+}
+
+function renderDayView() {
+  const day = viewingDay;
+  const d = DAYS[day];
+  const block = getBlock(day);
+  const isDone = userData.completedDays.includes(day);
+
+  document.getElementById('day-nav-num').textContent = 'Dia ' + String(day).padStart(2,'0');
+  document.getElementById('day-nav-block').textContent = 'Bloco ' + ROMAN[block.num-1] + ' · ' + block.title;
+
+  const btn = document.getElementById('btn-mark-done');
+  btn.textContent = isDone ? '✓ Lido' : 'Marcar como lido';
+  btn.classList.toggle('done', isDone);
+
+  const savedJournal = (userData.journalEntries && userData.journalEntries[day]) || '';
+
+  const reflectionHTML = d.reflection.map(p => `<p>${p}</p>`).join('');
+  const questionsHTML = d.questions.map((q,i) => `
+    <div class="aq-item">
+      <div class="aq-num">Pergunta ${String(i+1).padStart(2,'0')}</div>
+      <div class="aq-text">${q}</div>
+    </div>`).join('');
+
+  document.getElementById('day-content').innerHTML = `
+    <div class="day-header-block">
+      <div class="dh-num">${String(day).padStart(2,'0')}</div>
+      <div class="dh-block">Bloco ${ROMAN[block.num-1]} · ${block.title}</div>
+    </div>
+
+    <div class="content-section">
+      <div class="cs-tag">A Palavra · O Norte</div>
+      <div class="verse-text">"${d.verse}"</div>
+      ${d.ref ? `<div class="verse-ref">— ${d.ref}</div>` : ''}
+    </div>
+
+    <div class="content-section">
+      <div class="cs-tag">A Reflexão · A Condução</div>
+      <div class="reflection-text">${reflectionHTML}</div>
+    </div>
+
+    <div class="content-section">
+      <div class="cs-tag">O Ativar · A Ação</div>
+      <div class="activate-questions">${questionsHTML}</div>
+      <div class="journal-wrap">
+        <div class="journal-label">Espaço de escrita</div>
+        <textarea class="journal-area" id="journal-textarea-${day}" placeholder="Escreva aqui sua reflexão...">${savedJournal}</textarea>
+        <div style="display:flex;align-items:center">
+          <button class="btn-save-journal" onclick="saveJournal(${day})">Salvar reflexão</button>
+          <span class="save-feedback" id="save-feedback-${day}">Salvo ✓</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-section">
+      <div class="cs-tag">O Clamor · A Oração</div>
+      <div class="prayer-text">${d.prayer}</div>
+      <div class="prayer-end">· · ·</div>
+    </div>
+  `;
+}
+
+function prevDay() {
+  if (viewingDay > 1) { viewingDay--; renderDayView(); }
+}
+function nextDay() {
+  if (viewingDay < 365) { viewingDay++; renderDayView(); }
+}
+
+function toggleDayDone() {
+  const day = viewingDay;
+  const idx = userData.completedDays.indexOf(day);
+  if (idx >= 0) {
+    userData.completedDays.splice(idx, 1);
+  } else {
+    userData.completedDays.push(day);
+    // avança currentDay se for o dia atual
+    if (day === userData.currentDay && day < 365) {
+      userData.currentDay = day + 1;
+      viewingDay = userData.currentDay;
+    }
+  }
+  saveUserData();
+  renderDayView();
+  renderDashboard();
+}
+
+async function saveJournal(day) {
+  const text = document.getElementById(`journal-textarea-${day}`).value;
+  if (!userData.journalEntries) userData.journalEntries = {};
+  userData.journalEntries[day] = text;
+  await saveUserData();
+  const fb = document.getElementById(`save-feedback-${day}`);
+  fb.style.opacity = '1';
+  setTimeout(() => fb.style.opacity = '0', 2000);
+}
+
+// ════════════════════════════════════════
+// BLOCKS
+// ════════════════════════════════════════
+function renderBlocksGrid() {
+  const grid = document.getElementById('blocks-grid');
+  grid.innerHTML = BLOCKS.map((b, i) => {
+    const total = b.end - b.start + 1;
+    const done = userData.completedDays.filter(d => d >= b.start && d <= b.end).length;
+    const pct = Math.round((done/total)*100);
+    const isCurrent = userData.currentDay >= b.start && userData.currentDay <= b.end;
+    return `
+      <div class="block-card-item ${isCurrent ? 'current' : ''}" onclick="goToBlock(${b.start})">
+        <div class="bc-roman">${ROMAN[i]}</div>
+        <div class="bc-title">${b.title}</div>
+        <div class="bc-range">Dias ${b.start}–${b.end}</div>
+        <div class="bc-progress">
+          <div class="bc-progress-fill" style="width:${pct}%"></div>
+        </div>
+      </div>`;
+  }).join('');
+}
+
+function goToBlock(startDay) {
+  viewingDay = startDay;
+  showView('today');
+}
+
+// ════════════════════════════════════════
+// MURAL
+// ════════════════════════════════════════
+function renderMural() {
+  const container = document.getElementById('mural-cards');
+  if (!userData.muralCards || userData.muralCards.length === 0) {
+    container.innerHTML = `<p style="font-size:13px;color:var(--muted-light);font-style:italic;grid-column:1/-1">Nenhuma palavra guardada ainda. Adicione versículos que marcaram sua jornada.</p>`;
+    return;
+  }
+  container.innerHTML = userData.muralCards.map((card, i) => `
+    <div class="mural-card">
+      <button class="mc-del" onclick="removeMuralCard(${i})">×</button>
+      <div class="mc-verse">"${card.verse}"</div>
+      <div class="mc-ref">${card.ref || ''}</div>
+    </div>`).join('');
+}
+
+async function addMuralCard() {
+  const verse = document.getElementById('mural-verse-input').value.trim();
+  const ref = document.getElementById('mural-ref-input').value.trim();
+  if (!verse) return;
+  if (!userData.muralCards) userData.muralCards = [];
+  userData.muralCards.unshift({ verse, ref });
+  document.getElementById('mural-verse-input').value = '';
+  document.getElementById('mural-ref-input').value = '';
+  await saveUserData();
+  renderMural();
+}
+
+async function removeMuralCard(i) {
+  userData.muralCards.splice(i, 1);
+  await saveUserData();
+  renderMural();
+}
+
+// Loader timeout fallback
+setTimeout(() => {
+  const loader = document.getElementById('loader');
+  if (loader.style.display !== 'none') {
+    loader.style.opacity = '0';
+    setTimeout(() => loader.style.display = 'none', 600);
+    document.getElementById('auth-screen').classList.remove('hidden');
+  }
+}, 4000);
+</script>
+</body>
+</html>
