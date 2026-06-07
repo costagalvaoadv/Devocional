@@ -1066,6 +1066,10 @@ h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 400; }
     </div>
     <nav class="sidebar-nav">
       <div class="nav-section-label">Início</div>
+      <div class="nav-item" onclick="showView('welcome')" id="nav-welcome">
+        <span class="nav-icon">✦</span>
+        <span>Bem-vinda ao LUME</span>
+      </div>
       <div class="nav-item active" onclick="showView('dashboard')" id="nav-dashboard">
         <span class="nav-icon">◇</span>
         <span>Painel</span>
@@ -1095,6 +1099,91 @@ h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 400; }
 
   <!-- MAIN -->
   <main class="main">
+
+    <!-- WELCOME -->
+    <div class="view" id="view-welcome">
+      <div style="max-width:680px">
+
+        <div style="text-align:center;margin-bottom:3rem">
+          <div style="font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);font-weight:500;font-family:'Jost',sans-serif;margin-bottom:1.5rem">Bem-vinda</div>
+          <h1 style="font-family:'Cormorant Garamond',serif;font-size:42px;font-weight:300;color:var(--ink);line-height:1.1;margin-bottom:0.8rem">A Origem do LUME</h1>
+          <div style="width:40px;height:0.5px;background:var(--gold);margin:0 auto 1.5rem"></div>
+        </div>
+
+        <div style="background:var(--white);border:0.5px solid var(--line);border-left:2px solid var(--gold);border-radius:var(--radius);padding:2rem;margin-bottom:1.5rem">
+          <div style="font-family:'Cormorant Garamond',serif;font-size:20px;font-style:italic;color:var(--ink-soft);line-height:1.6;margin-bottom:1.2rem">Há uma luz que não grita.</div>
+          <div style="font-size:14px;font-weight:300;color:var(--ink-soft);line-height:1.9;font-family:'Jost',sans-serif">
+            <p style="margin-bottom:1rem">Ela não disputa espaço com o ruído do mundo — ela simplesmente aparece, e tudo o que estava obscuro se revela. Os antigos chamavam essa luz de <em>lumen</em>: não o clarão do raio, não o brilho ensaiado do palco, mas a luminosidade quieta e inexorável que dissipa a névoa e impõe a verdade.</p>
+            <p style="margin-bottom:1rem"><strong style="font-weight:500;color:var(--ink)">LUME nasceu desse nome. E nasceu para você.</strong></p>
+            <p style="margin-bottom:1rem">Para a mulher que acorda cedo demais carregando o peso tarde demais. Para aquela que entrega o seu melhor em cada frente e ainda assim sente que falta algo — uma clareza, um norte, uma voz que confirme o que ela intui mas teme declarar em voz alta: <em>que ela foi feita para mais do que isso.</em></p>
+            <p>Este devocional não é um livro de consolo. Não foi escrito para acalmar quem está conformada. Foi escrito para despertar quem está adormecida dentro de um papel que é pequeno demais para o que Deus colocou nela.</p>
+          </div>
+        </div>
+
+        <div style="background:var(--warm);border:0.5px solid var(--line);border-radius:var(--radius);padding:2rem;margin-bottom:1.5rem">
+          <div style="font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);font-weight:500;font-family:'Jost',sans-serif;margin-bottom:1.2rem">O Manifesto</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:300;color:var(--ink);line-height:1.8">
+            <p style="margin-bottom:0.8rem">Você não começou este devocional por acaso.</p>
+            <p style="margin-bottom:0.8rem">Algo em você sabia que era hora. Que o próximo capítulo da sua história não pode ser uma repetição do anterior. Que a mulher que você sente que poderia ser não é uma ilusão —</p>
+            <p style="font-style:italic;font-size:22px;color:var(--gold);margin-bottom:0.8rem">é uma profecia.</p>
+            <p style="margin-bottom:0.8rem">Cada dia deste devocional é um encontro. Um espaço onde o mundo do lado de fora silencia — e onde a voz que importa pode, finalmente, ser ouvida.</p>
+            <p>O <em>lumen</em> não pede que você mude antes de chegar. Ele ilumina o caminho para que você veja, por conta própria, quem você sempre foi.</p>
+          </div>
+          <div style="text-align:center;margin-top:1.5rem;font-family:'Cormorant Garamond',serif;font-size:14px;letter-spacing:4px;color:var(--gold-light)">· · ·</div>
+        </div>
+
+        <div style="background:var(--white);border:0.5px solid var(--line);border-radius:var(--radius);padding:2rem;margin-bottom:1.5rem">
+          <div style="font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);font-weight:500;font-family:'Jost',sans-serif;margin-bottom:1.5rem">Como usar o LUME</div>
+          <div style="display:flex;flex-direction:column;gap:1.2rem">
+            <div style="display:flex;gap:1rem;align-items:flex-start">
+              <div style="font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--gold-light);font-weight:300;line-height:1;min-width:28px">1</div>
+              <div>
+                <div style="font-size:13px;font-weight:500;color:var(--ink);margin-bottom:0.3rem;font-family:'Jost',sans-serif">Escolha o seu horário sagrado</div>
+                <div style="font-size:13px;font-weight:300;color:var(--muted);line-height:1.7;font-family:'Jost',sans-serif">Não há horário certo — há o horário que é seu. Manhã cedo, pausa do almoço, silêncio da noite. O que importa é a consistência, não a perfeição.</div>
+              </div>
+            </div>
+            <div style="display:flex;gap:1rem;align-items:flex-start">
+              <div style="font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--gold-light);font-weight:300;line-height:1;min-width:28px">2</div>
+              <div>
+                <div style="font-size:13px;font-weight:500;color:var(--ink);margin-bottom:0.3rem;font-family:'Jost',sans-serif">Leia a Palavra em voz alta</div>
+                <div style="font-size:13px;font-weight:300;color:var(--muted);line-height:1.7;font-family:'Jost',sans-serif">Deixe o versículo pousar. Releia. Não avance até sentir o peso do que foi dito. A pressa é inimiga do encontro.</div>
+              </div>
+            </div>
+            <div style="display:flex;gap:1rem;align-items:flex-start">
+              <div style="font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--gold-light);font-weight:300;line-height:1;min-width:28px">3</div>
+              <div>
+                <div style="font-size:13px;font-weight:500;color:var(--ink);margin-bottom:0.3rem;font-family:'Jost',sans-serif">Escreva no espaço de journaling</div>
+                <div style="font-size:13px;font-weight:300;color:var(--muted);line-height:1.7;font-family:'Jost',sans-serif">As perguntas do Ativar não pedem respostas corretas — pedem respostas honestas. Escreva sem censura. Esta página é segura.</div>
+              </div>
+            </div>
+            <div style="display:flex;gap:1rem;align-items:flex-start">
+              <div style="font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--gold-light);font-weight:300;line-height:1;min-width:28px">4</div>
+              <div>
+                <div style="font-size:13px;font-weight:500;color:var(--ink);margin-bottom:0.3rem;font-family:'Jost',sans-serif">Ore em voz alta ou em silêncio</div>
+                <div style="font-size:13px;font-weight:300;color:var(--muted);line-height:1.7;font-family:'Jost',sans-serif">O Clamor é uma oração guiada — uma sugestão, não um roteiro rígido. Use as palavras ou as adapte. O que Deus quer é o coração, não a eloquência.</div>
+              </div>
+            </div>
+            <div style="display:flex;gap:1rem;align-items:flex-start">
+              <div style="font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--gold-light);font-weight:300;line-height:1;min-width:28px">5</div>
+              <div>
+                <div style="font-size:13px;font-weight:500;color:var(--ink);margin-bottom:0.3rem;font-family:'Jost',sans-serif">Marque o dia e siga</div>
+                <div style="font-size:13px;font-weight:300;color:var(--muted);line-height:1.7;font-family:'Jost',sans-serif">Se precisar pausar, tudo bem. O LUME não tem data — ele sempre estará aqui, no Dia que você decidir retomar. Não existe "perder". Existe recomeçar.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="background:var(--ink);border-radius:var(--radius);padding:2rem;text-align:center;margin-bottom:1.5rem">
+          <div style="font-family:'Cormorant Garamond',serif;font-size:22px;font-style:italic;color:var(--gold-light);line-height:1.6;margin-bottom:1.2rem">"A palavra é lâmpada que ilumina os meus passos<br>e luz que clareia o meu caminho."</div>
+          <div style="font-size:10px;letter-spacing:2px;color:rgba(184,151,106,0.5);font-family:'Jost',sans-serif">— Salmo 119.105</div>
+        </div>
+
+        <div style="text-align:center;padding:1rem 0 2rem">
+          <button onclick="showView('dashboard')" style="padding:1rem 3rem;background:var(--ink);border:none;border-radius:var(--radius);font-family:'Jost',sans-serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--cream);cursor:pointer;font-weight:500">Começar minha jornada →</button>
+        </div>
+
+      </div>
+    </div>
 
     <!-- DASHBOARD -->
     <div class="view active" id="view-dashboard">
@@ -1740,7 +1829,14 @@ function showApp() {
   renderDashboard();
   renderBlocksGrid();
   renderMural();
-  showView('dashboard');
+  // First time: show welcome. Returning users: go to dashboard.
+  const seen = localStorage.getItem('lume_welcome_seen_' + (currentUser.uid || 'demo'));
+  if (!seen) {
+    localStorage.setItem('lume_welcome_seen_' + (currentUser.uid || 'demo'), '1');
+    showView('welcome');
+  } else {
+    showView('dashboard');
+  }
 }
 
 // ════════════════════════════════════════
@@ -1755,10 +1851,11 @@ function showView(view) {
 
   if (view === 'today') { viewingDay = userData.currentDay; renderDayView(); }
   if (view === 'dashboard') renderDashboard();
+  if (view === 'blocks') renderBlocksGrid();
 
-  // close mobile sidebar
   document.getElementById('sidebar').classList.remove('open');
   document.getElementById('overlay').classList.remove('show');
+  window.scrollTo(0, 0);
 }
 
 function toggleSidebar() {
