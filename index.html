@@ -1177,9 +1177,9 @@ h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 400; }
 </div>
 
 <!-- FIREBASE SDK -->
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 
 <script>
 // ════════════════════════════════════════
@@ -1553,7 +1553,8 @@ async function doRegister() {
       createdAt: firebase.firestore.FieldValue.serverTimestamp()
     });
   } catch(e) {
-    showAuthError(translateFirebaseError(e.code));
+    console.error('Firebase error:', e.code, e.message);
+    showAuthError(translateFirebaseError(e.code) + ' [' + e.code + ']');
     btn.disabled = false; btn.textContent = 'Criar minha conta';
   }
 }
