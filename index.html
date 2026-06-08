@@ -369,6 +369,76 @@ h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 400; }
 .view { display: none; }
 .view.active { display: block; }
 
+.nota-versao {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.82rem;
+  color: var(--muted);
+  opacity: 0.75;
+  line-height: 1.7;
+  text-align: center;
+  margin-top: 1.2rem;
+  margin-bottom: 0.5rem;
+  padding: 0 1rem;
+  font-style: italic;
+}
+
+/* ── COMPARTILHAR ── */
+.share-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 1.5rem;
+  padding: 1rem 1.2rem;
+  background: var(--warm);
+  border: 0.5px solid var(--line);
+  border-radius: var(--radius);
+}
+.share-label {
+  font-family: 'Jost', sans-serif;
+  font-size: 9px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 500;
+  margin-right: 4px;
+  white-space: nowrap;
+}
+.share-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0.5rem 1rem;
+  border: 0.5px solid var(--line);
+  border-radius: 2px;
+  background: var(--white);
+  font-family: 'Jost', sans-serif;
+  font-size: 10px;
+  letter-spacing: 1px;
+  color: var(--ink-soft);
+  cursor: pointer;
+  transition: all 0.15s;
+  font-weight: 400;
+}
+.share-btn:hover { border-color: var(--gold); color: var(--gold); background: var(--warm); }
+.share-btn svg { width: 14px; height: 14px; }
+.share-copy-toast {
+  display: none;
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--ink);
+  color: var(--cream);
+  font-family: 'Jost', sans-serif;
+  font-size: 11px;
+  letter-spacing: 1px;
+  padding: 0.7rem 1.5rem;
+  border-radius: 2px;
+  z-index: 9999;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
 /* ── DASHBOARD ── */
 .dash-greeting {
   margin-bottom: 3rem;
@@ -485,12 +555,14 @@ h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 400; }
   letter-spacing: 0;
   position: relative;
 }
-.tracker-day:hover { border-color: var(--gold); color: var(--gold); }
+.tracker-day:hover { border-color: var(--gold); }
 .tracker-day.done {
-  background: var(--gold);
+  background: var(--gold-pale);
   border-color: var(--gold);
-  color: var(--white);
-  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8%;
 }
 .tracker-day.today {
   border-color: var(--gold);
@@ -1178,6 +1250,8 @@ h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 400; }
           <div style="font-size:10px;letter-spacing:2px;color:rgba(184,151,106,0.5);font-family:'Jost',sans-serif">— Salmo 119.105</div>
         </div>
 
+        <p class="nota-versao"><strong>Nota sobre as escritas sagradas:</strong> Para garantir que a sua jornada com o LUME seja profunda, fluida e conectada com a realidade dos seus dias, todas as citações bíblicas deste devocional utilizam a Nova Versão Internacional (NVI). Escolhemos esta tradução por sua precisão histórica combinada com uma linguagem clara, elegante e imponente — ideal para o despertar e o governo da mulher moderna.</p>
+
         <div style="text-align:center;padding:1rem 0 2rem">
           <button onclick="showView('dashboard')" style="padding:1rem 3rem;background:var(--ink);border:none;border-radius:var(--radius);font-family:'Jost',sans-serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--cream);cursor:pointer;font-weight:500">Começar minha jornada →</button>
         </div>
@@ -1353,74 +1427,74 @@ const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII'];
 
 const DAYS = {
   1: {
-    verse: "Antes de te formar no ventre, eu te conheci; antes que saísses da madre, eu te santifiquei.",
-    ref: "Jeremias 1.5",
-    reflection: ["Há dias em que você acorda e, antes mesmo que o primeiro pensamento se forme, já existe um peso. Não é tristeza com causa definida, não é cansaço que uma noite de sono resolve — é algo mais sutil: a sensação de que você perdeu o fio de quem é. A agenda exige. As pessoas esperam. O feed mostra versões polidas de vidas que parecem ter sentido. E você, entre uma tarefa e outra, pergunta em silêncio: e eu, o que sou?","Esta Palavra não é uma resposta fácil para essa pergunta. É algo mais profundo: é um lembrete de que sua identidade não nasceu da sua performance. Ela foi tecida antes de você ter a chance de errar, de decepcionar, de fracassar — ou de acertar. Deus te conheceu antes de você se conhecer.","Começar essa jornada é decidir parar de construir uma identidade de fora para dentro. É escolher — por vezes contra todo o ruído externo — sentar diante do que é eterno em você. Não o que você faz. Não o que você conquistou. O que Deus viu antes de qualquer coisa existir."],
-    questions: ["Quando você tira todas as funções que desempenha — mãe, profissional, filha, parceira — quem resta?","Escreva, sem censura, o que vem quando você pergunta: quem sou eu, quando ninguém está olhando?"],
-    prayer: "Senhor, hoje escolho começar. Não porque estou pronta, mas porque Tu me conheces mesmo quando eu não me reconheço. Ensina-me a descansar na identidade que Tu teceste em mim antes que eu soubesse do meu próprio nome. Que esta jornada seja um retorno ao que sempre fui em Ti."
+    verse: "Antes de formá-lo no ventre eu o escolhi; antes de você nascer, eu o separei e o designei profeta às nações.",
+    ref: "Jeremias 1.5 (NVI)",
+    reflection: ["Antes da sua primeira conquista, antes do seu primeiro cargo, antes da sua primeira prova de valor — havia uma escolha. Uma separação. Uma designação. A sua identidade não é o resultado da sua trajetória. É a fundação que a precede. Isso muda tudo sobre o que você está construindo e para quê.", "A rainha que governa a partir dessa revelação não age para provar que merece seu lugar. Ela age porque reconhece o mandato que recebeu antes de poder demonstrar qualquer coisa. Quando Deus escolhe, Ele também equipa. Quando separa, também sustenta. Você não chegou até aqui por acidente — chegou por eleição.", "Começar esta jornada não é buscar quem você é. É lembrar o que você sempre foi — antes do ruído, antes das expectativas, antes de aprender a ser menor para caber onde não era o seu lugar. A rainha não precisa se descobrir. Precisa se lembrar."],
+    questions: ["Quando você retira todas as funções que desempenha — líder, executora, gestora, parceira — o que permanece? Quem você é quando não há nada a provar?", "Em qual área da sua vida você ainda age como se sua identidade dependesse da sua performance, e não do mandato que recebeu antes de começar?"],
+    prayer: "Senhor, que o conhecimento de ter sido escolhida antes de qualquer prova mude a fundação de onde governa. Não venho construir identidade — venho lembrá-la. Que esta jornada seja de reposicionamento, não de descoberta. A rainha que sou em Ti governa com uma autoridade que nenhuma conquista confere e nenhuma falha remove."
   },
   2: {
-    verse: "Sede quietos e sabei que eu sou Deus.",
-    ref: "Salmo 46.10",
-    reflection: ["Existe uma tirania silenciosa na vida moderna que ninguém nomeia abertamente: a tirania da produtividade constante. Descansar virou algo que precisa ser merecido. Silêncio virou desconforto. Estar parada passou a ser sinônimo de estar ficando para trás. E nessa corrida sem linha de chegada, a mulher vai perdendo o contato com a voz mais importante: a sua própria.","'Sede quietos' — em hebraico, raphah — carrega o sentido de soltar, de afrouxar a tensão. Não é passividade. É um ato de coragem deliberada contra uma cultura que confunde agitação com virtude. Deus não pede que você deixe de existir. Ele pede que você pare de performar existência por um momento — e simplesmente seja.","Quando o silêncio parece ameaçador, é porque há dentro de você algo que precisa ser ouvido e você ainda não teve espaço para ouvi-lo. Hoje, o convite não é resolver nada. É apenas parar."],
-    questions: ["O que acontece dentro de você quando não há nada para fazer? Descreva a sensação — sem julgá-la.","Ela revela algo sobre o que você tem usado para sustentar sua identidade?"],
-    prayer: "Pai, eu solto a necessidade de fazer algo para ser alguém. No silêncio de agora, escolho Te encontrar — não como um item da minha lista, mas como a minha âncora. Ensina-me que quietude não é fraqueza: é onde Tu és mais claramente encontrado."
+    verse: "Parem de lutar! Saibam que eu sou Deus! Serei exaltado entre as nações, serei exaltado na terra.",
+    ref: "Salmos 46.10 (NVI)",
+    reflection: ["Esta não é uma convocação para a passividade. É uma ordem de reposicionamento estratégico. 'Parem de lutar' — em hebraico, raphah — significa soltar, afrouxar a tensão, parar de sustentar pela força o que deveria ser sustentado pela fé. É o Senhor dos Exércitos dizendo à rainha: saia do modo de sobrevivência e entre no modo de governo.", "A mulher que nunca para de lutar — que vai de reunião em reunião sem um momento de silêncio real, que confunde agitação com produtividade — está exercendo força no lugar errado. Não porque seja incapaz, mas porque está tentando segurar com as mãos o que pertence ao trono de Deus. A luta que não cessa não é sinal de coragem. É sinal de que ela ainda não confiou plenamente em Quem está no controle.", "'Saibam que eu sou Deus' — a ordem que vem depois do silêncio é sempre um conhecimento renovado. A rainha que para de lutar o suficiente para saber — de verdade, nas profundezas — Quem está no trono, descobre que a batalha mais importante já foi vencida. E governa a partir dessa certeza."],
+    questions: ["Em qual área da sua vida você está lutando quando deveria estar posicionando? O que você está segurando por força bruta que pertence ao trono de Deus?", "O que acontece no seu interior quando você para — de verdade, com intenção — por alguns minutos? O que esse silêncio estratégico revela sobre como você tem governado?"],
+    prayer: "Senhor dos Exércitos, paro de lutar agora — não como derrota, mas como posicionamento de governo. Que o meu silêncio seja estratégico. Que saber quem és no trono mude como opero no campo. Que a rainha que sou em Ti governe a partir da vitória já conquistada, não da batalha já vencida."
   },
   3: {
-    verse: "Pois Tu formaste os meus rins; Tu me teceste no ventre de minha mãe.",
-    ref: "Salmo 139.13",
-    reflection: ["Você já parou para perceber como a auto-crítica chegou com tanta naturalidade? A voz interna que aponta seus defeitos antes que qualquer outra pessoa perceba. O olho que encontra no espelho o que não está certo antes de ver o que está. Essa voz foi aprendida — não foi a primeira voz que falou sobre você.","A primeira voz que falou sobre você disse: eu te teci. A escolha da palavra é teológica e poética ao mesmo tempo: tecer é um ato intencional, lento, que exige atenção a cada fio. Você não foi fabricada em série. Você foi feita com cuidado específico.","Isso não dissolve as suas feridas. Não apaga as partes de você que você ainda não compreende. Mas coloca uma fundação sob tudo: antes da sua história, havia uma intenção. Antes do que você virou, havia o que você foi feita para ser."],
-    questions: ["Qual aspecto de quem você é — físico, emocional ou de personalidade — você mais resiste a aceitar?","Escreva uma frase de reconciliação com esse aspecto, como se você o visse pela perspectiva de quem te criou com intenção."],
-    prayer: "Deus, obrigada por me ter feito com intenção. Hoje, escolho acreditar que o que está em mim não foi engano — foi projeto. Cuida das partes de mim que ainda não consigo amar. Que eu aprenda a ver o que Tu fizeste e chamar de bom."
+    verse: "Tu criaste o íntimo do meu ser e me teceste no ventre de minha mãe.",
+    ref: "Salmos 139.13 (NVI)",
+    reflection: ["Tecer é um ato de intenção deliberada. Cada fio colocado com propósito, cada detalhe calculado por quem conhece o padrão final. Deus não fabricou você em série. Não usou um molde genérico. Teceu — com atenção ao íntimo, ao que está mais fundo do que qualquer função ou realização. O design do seu interior foi executado com a precisão de um Arquiteto que conhecia o projeto antes de começar.", "A rainha que governa a partir dessa consciência não crítica o que vê — analisa o que foi projetado. Há uma diferença fundamental entre a mulher que avalia suas características como defeitos e a mulher que as compreende como componentes de um design intencional. Temperamento, forma de pensar, intensidade, profundidade — nada disso foi engano. Foi projeto.", "Isso não dissolve o processo de crescimento. A rainha ainda se refina, ainda expande, ainda corrige o que se desviou. Mas o faz a partir de uma fundação de aceitação do design original — não de crítica constante ao que foi tecido com intenção."],
+    questions: ["Qual aspecto de quem você é — temperamento, forma de processar, modo de liderar — você ainda resiste a aceitar como design intencional? O que isso está custando à sua autoridade?", "Escreva uma declaração de reconciliação com esse aspecto — não uma afirmação vaga, mas o reconhecimento honesto de quem está escolhendo enxergar o que foi tecido com intenção."],
+    prayer: "Criador, que o conhecimento de ser Tua obra tecida mude como me governo internamente. Onde há autocrítica que contradiz o projeto, instala percepção. Que eu me trate, me posicione e me lidere à altura do que porta um design divino. A rainha que sou foi feita por mãos que sabiam o que faziam."
   },
   4: {
-    verse: "Não andeis ansiosos por nada.",
-    ref: "Filipenses 4.6",
-    reflection: ["A ansiedade da mulher moderna tem endereço certo: o futuro. Não um futuro distante de tragédias — mas o de amanhã, o da próxima semana, o da próxima conversa difícil. A mente que não descansa viaja constantemente para cenários que ainda não existem, carregando um peso que não foi dado para ser carregado hoje.","Paulo escreveu essas palavras de dentro de uma prisão. Isso importa. Ele não estava em um retiro espiritual quando encontrou a paz. Estava em uma situação onde o futuro era literalmente incerto. E mesmo assim, escreveu: não andeis ansiosos por nada. Não porque o problema não existia — mas porque encontrou algo mais sólido: a presença de Deus no presente.","A ansiedade nos pede que controlemos o que não controlamos. A fé nos convida a habitarmos o único tempo que existe de verdade: agora. Não é negação da realidade — é a decisão de não deixar que o amanhã imaginário roube o hoje real."],
-    questions: ["O que você está carregando hoje que pertence ao futuro — e não ao momento presente?","Escreva esses pesos e, ao lado de cada um, escreva: 'este não é meu para carregar hoje.'"],
-    prayer: "Senhor, Te apresento o que está pesando em mim agora. Não porque tenho fé perfeita, mas porque escolho confiar que Tu já estás no amanhã que me assusta. Guarda minha mente e meu coração. Que eu habite este dia com presença real."
+    verse: "Não andem ansiosos por coisa alguma, mas em tudo, pela oração e súplicas, e com ação de graças, apresentem seus pedidos a Deus.",
+    ref: "Filipenses 4.6 (NVI)",
+    reflection: ["Paulo escreveu isso de dentro de uma prisão, com o resultado do seu julgamento incerto e o futuro completamente fora do seu controle. A paz que descreve não nasce de circunstâncias resolvidas — nasce de uma prática: apresentar a Deus o que não pode ser controlado, com ação de graças, de forma sistemática e deliberada. Essa é a diferença entre gestão de ansiedade e inteligência espiritual.", "A ansiedade é a tentativa de resolver no seu nível o que só encontra resposta num nível acima do seu. A mulher de alta capacidade conhece bem essa armadilha — a mente que não desliga, que continua processando às 2h da manhã, que confunde hipervigilância com responsabilidade. A instrução não é 'não pense no problema'. É 'leve o problema à presença certa, com a postura certa'.", "'Não andem ansiosos' — o verbo está no imperativo contínuo. Não é uma conquista de uma vez. É uma postura de governo que precisa ser escolhida repetidamente, contra o impulso natural da mente que antecipa e tenta controlar o incontrolável. A oração não é a última opção quando tudo falhou. É a primeira estratégia de quem governa com inteligência espiritual."],
+    questions: ["Identifique os três maiores pontos de ansiedade na sua vida agora. Para cada um, pergunte: isso é meu para resolver, ou é de Deus para sustentar?", "Qual é a diferença prática entre 'apresentar seus pedidos a Deus com ação de graças' e simplesmente preocupar-se com algo em forma de oração?"],
+    prayer: "Pai, apresento-Te o que está pesando — não como última alternativa, mas como primeira estratégia. Com ação de graças porque sei que estás no controle do que entrego. Guarda minha mente e meu coração do retorno à ansiedade. Que governar com inteligência espiritual seja mais natural em mim do que calcular sozinha."
   },
   5: {
-    verse: "Deus não nos deu espírito de covardia, mas de poder, de amor e de moderação.",
-    ref: "2 Timóteo 1.7",
-    reflection: ["O medo disfarça muito bem. Ele se apresenta como prudência quando está paralisando. Aparece como humildade quando está impedindo. Chama a si mesmo de responsabilidade quando está encolhendo. A mulher que foi criada com dons e chamados frequentemente vive aquém do que poderia ser — não por falta de capacidade, mas por ter aprendido a negociar com o medo de maneira tão íntima que já não percebe quando ele está na mesa.","Paulo lembra Timóteo de que o espírito de covardia não tem origem divina. Isso é libertador e exigente ao mesmo tempo: libertador porque o medo que paralisa não é a voz de Deus te protegendo. Exigente porque tira o medo do posto de conselheiro legítimo que ele usurpou.","Poder, amor e moderação: uma tríade que não combina com excesso, nem com compulsão. É a imagem de uma mulher que age com força, cuida com intenção e conhece seus limites sem que eles sejam impostos pelo medo. Essa é a descrição do seu espírito original."],
-    questions: ["Em qual área da sua vida o medo tem se disfarçado de sabedoria?","O que você teria feito de diferente se soubesse, com certeza, que o espírito dentro de você é de poder — não de covardia?"],
-    prayer: "Pai, expõe em mim o medo que se esconde atrás de palavras razoáveis. Quero agir a partir do espírito que Tu me deste — não do que aprendi com as deceções acumuladas. Que o poder, o amor e a moderação que vêm de Ti sejam mais reais em mim do que qualquer voz que me diminui."
+    verse: "Pois Deus não nos deu espírito de covardia, mas de poder, de amor e de equilíbrio.",
+    ref: "2 Timóteo 1.7 (NVI)",
+    reflection: ["O espírito de covardia não é fraqueza de caráter. É um espírito — uma disposição interna que se instala e começa a definir as escolhas. Ele se disfarça com nomes respeitáveis: prudência, humildade, realismo, cuidado. E vai, sistematicamente, reduzindo o território do seu governo. Fazendo você recuar antes do ataque. Negociar antes da resistência. Encolher antes de ocupar o espaço que é seu.", "Paulo afirma com clareza: esse espírito não vem de Deus. Isso é teologicamente relevante e praticamente libertador. O medo que paralisa não é proteção divina. É uma disposição contrária ao que foi colocado em você. E o que foi colocado em você é descrito em três palavras: poder, amor e equilíbrio — força que age, amor que sustenta a ação, e equilíbrio que direciona a força sem destruir o que devia ser preservado.", "A rainha que opera a partir do espírito que Deus deu não age por impulsividade — age por poder. Não age por necessidade de aprovação — age por amor ao propósito. Não age de forma descontrolada — age com o equilíbrio de quem conhece o peso das suas decisões. Esse é o seu espírito original. Tudo o que o contradiz é um intruso sem autorização."],
+    questions: ["Em qual área específica da sua vida o espírito de covardia tem operado disfarçado de prudência ou humildade? O que você tem adiado, recuado ou evitado que é seu para assumir?", "O que mudaria nas suas decisões desta semana se você as tomasse a partir de poder, amor e equilíbrio — em vez de partir do medo de errar ou de decepcionar?"],
+    prayer: "Pai, expõe em mim o medo que se esconde atrás de palavras razoáveis. Que o espírito que Tu me deste — de poder, de amor e de equilíbrio — governe minhas escolhas com mais autoridade do que qualquer disposição de covardia. Que eu aja a partir da minha natureza original, não do que o medo construiu."
   },
   6: {
-    verse: "Sou a videira verdadeira, e meu Pai é o agricultor.",
-    ref: "João 15.1",
-    reflection: ["Vivemos numa cultura que glorifica a autossuficiência. A mulher que não precisa de ninguém, que se construiu sozinha — essa é a heroína contemporânea. E há algo valoroso nisso. Mas há também uma armadilha: a ilusão de que crescimento é algo que se faz por conta própria.","Jesus usa a imagem de uma videira com intenção específica: um ramo separado do tronco não murcha imediatamente. Ele mantém a aparência por um tempo. Continua parecendo verde. Mas não produz nada. Não porque seja deficiente — mas porque produção exige conexão com a fonte.","Dependência não é fraqueza quando a fonte é o Eterno. Reconhecer que você precisa permanecer conectada não é admitir incapacidade — é entender como você foi desenhada para funcionar. O fruto da sua vida não nasce do esforço da sua vontade. Nasce da qualidade da sua permanência."],
-    questions: ["O que em você tem parecido produtivo mas está, na verdade, separado de qualquer fonte mais profunda?","Em que área da vida você tem tentado frutificar por força própria, sem conexão real com Deus?"],
-    prayer: "Senhor, não quero ser ramo que apenas aparenta. Quero produzir o que só é possível quando estou em Ti. Que a minha dependência de Ti não seja vergonha, mas sabedoria. Ensina-me a permanecer quando tudo em mim quer apenas agir."
+    verse: "Eu sou a videira verdadeira, e meu Pai é o agricultor.",
+    ref: "João 15.1 (NVI)",
+    reflection: ["Antes de qualquer instrução sobre como produzir, Jesus declara quem Ele é na relação. A videira. O tronco. A fonte. E o Pai — o Agricultor que conhece cada ramo, que poda com intenção, que distingue entre o que está produzindo e o que apenas aparenta. Essa estrutura não é opcional para quem quer governar com excelência. É a arquitetura do fruto real.", "A mulher de alta performance conhece a ilusão do ramo separado: ele parece verde por um tempo. Mantém a aparência de vitalidade. Continua em movimento. Mas não produz — porque produção sustentável exige fonte. E a fonte não é a sua competência, a sua rede de relacionamentos, a sua disciplina de trabalho. São instrumentos. A fonte é a conexão com a videira.", "Isso muda o diagnóstico do esgotamento. Quando você está seca não é porque trabalhou pouco. É porque, no esforço de produzir, foi se desconectando da fonte que sustenta o fruto. A solução não é trabalhar mais inteligentemente. É permanecer. Voltar à conexão que gera o que nenhum esforço próprio consegue replicar."],
+    questions: ["Em qual área da sua vida você tem tentado produzir por força da própria competência, sem permanecer conectada à fonte? O que essa desconexão tem custado em energia e em qualidade do que entrega?", "O que significa 'permanecer' para você na prática — não como conceito espiritual, mas como hábito concreto na sua rotina de liderança e governo?"],
+    prayer: "Senhor, não quero ser ramo que aparenta. Quero produzir o que só é possível quando estou em Ti. Que eu pare de confundir atividade com fruto e esforço com permanência. Que o que entrego ao mundo nasça de uma conexão real — e que essa qualidade de fruto seja o legado do meu reinado."
   },
   7: {
-    verse: "O Senhor é o meu pastor; nada me faltará.",
-    ref: "Salmo 23.1",
-    reflection: ["Há uma fome que não é saciada pela conquista. Você a conhece: é a que permanece depois de alcançar o que queria, a que aparece em meio às coisas boas quando você percebe que elas não preenchem o que prometiam. É a fome que não tem nome na prateleira de soluções modernas.","'Nada me faltará' — essa não é uma promessa de abundância material. É uma declaração sobre a qualidade de um relacionamento. Um pastor que conhece suas ovelhas as conduz ao que elas precisam, não necessariamente ao que elas desejam no momento.","Confiar que nada faltará não é ingenuidade — é a decisão de não deixar que a ansiedade da escassez defina suas escolhas. É viver a partir de uma provisão que não depende dos seus cálculos. A fome que permanece depois de tudo tem um nome: ela está à procura do Pastor."],
-    questions: ["O que você tem mais temido que falte — seja concreto ou emocional?","Como esse medo tem influenciado suas decisões? O que seria diferente se você vivesse a partir da certeza de que é cuidada?"],
-    prayer: "Senhor, confio hoje no Teu cuidado — mesmo onde ainda não consigo ver a provisão. Que o medo da escassez não governe o que faço ou o que evito. Que eu conheça, na prática, o que significa ter Te como meu pastor."
+    verse: "O Senhor é o meu pastor; de nada terei falta.",
+    ref: "Salmos 23.1 (NVI)",
+    reflection: ["'De nada terei falta' — essa não é uma promessa de abundância material. É uma declaração sobre a qualidade de um relacionamento. Um pastor que conhece suas ovelhas não as deixa sem o que precisam — não gerencia cotas, não distribui de acordo com o mérito. Cuida, com o conhecimento específico de cada uma, com a capacidade de prover o que está além da visão de quem é cuidado.", "A mulher que opera a partir da mentalidade da escassez — sempre calculando se haverá suficiente, sempre antecipando a falta, sempre guardando recursos como se fossem finitos — está vivendo uma contradição com esta declaração. Se o Senhor é o seu pastor, então a sua postura diante da vida não é de gerenciamento da falta. É de administração da provisão.", "A rainha que governa a partir da confiança no Pastor tem um nível de serenidade estratégica que a mulher operando no modo de escassez nunca vai alcançar. Não porque ignore os dados da realidade — mas porque os lê dentro de um contexto maior: o de quem é cuidada por Quem tem recursos que excedem qualquer cálculo humano."],
+    questions: ["Em qual área da sua vida a mentalidade da escassez tem governado mais — tempo, recursos, energia, reconhecimento? Como isso tem afetado suas decisões e sua liderança?", "O que seria diferente na sua forma de liderar e decidir se você vivesse genuinamente a partir da convicção de que 'de nada terei falta'? Escreva com especificidade."],
+    prayer: "Senhor Pastor, que a Tua provisão seja mais real para mim do que qualquer cálculo de escassez que aprendi a fazer. Que eu governe a partir da abundância do que és, não do medo do que pode faltar. Que a rainha que sou em Ti seja mais frutífera porque sabe que é cuidada por Quem não tem limitação de recursos."
   },
   8: {
-    verse: "Vinde a mim, todos os que estais cansados e sobrecarregados, e eu vos darei descanso.",
-    ref: "Mateus 11.28",
-    reflection: ["Existe um cansaço que você não consegue nomear no médico, não aparece em nenhum exame — mas está presente em tudo. É o cansaço de sustentar uma versão de si mesma que exige demasiado. De ser boa o suficiente para todos, ao mesmo tempo. De carregar expectativas que nunca foram suas, mas que você adotou tão cedo que já não lembra de antes delas.","Jesus não convida os bem-descansados. Ele convida os cansados — e o convite é simples ao ponto de ser suspeito: vinde. Não: primeiro arrume isso. Não: quando estiver melhor. A promessa do descanso não está condicionada à sua melhoria — está condicionada à sua chegada.","O peso que Ele oferece em troca é descrito como leve. Não como nenhum — mas como leve. Há responsabilidades reais. Mas há uma diferença fundamental entre o peso que foi dado para você e o peso que você simplesmente nunca deixou cair."],
-    questions: ["Liste, com honestidade, o que você está carregando agora. Ao lado de cada item, escreva: 'foi me dado' ou 'eu assumi'.","O que você percebe nessa separação?"],
-    prayer: "Jesus, venho como estou — cansada do que construí e do que carreguei. Não te peço que remova todas as responsabilidades, mas que me mostre a diferença entre o que é meu e o que é pesado demais porque não era para mim. Que eu aprenda o Teu ritmo."
+    verse: "Venham a mim, todos os que estão cansados e sobrecarregados, e eu darei descanso a vocês.",
+    ref: "Mateus 11.28 (NVI)",
+    reflection: ["A convocação não é para os bem descansados — é para os que carregam peso real. E esse peso, para a mulher de alta capacidade, raramente é fraqueza. É o resultado de ter assumido mais do que foi dado para uma pessoa carregar. De ter sustentado outros por tanto tempo que o próprio peso se tornou parte da identidade. De confundir responsabilidade com onipresença.", "'Venham' — não 'melhorem primeiro'. Não 'resolvam o pendente'. Não 'quando tiverem menos demandas'. A condição para o descanso não é a resolução dos problemas. É a chegada. E a chegada está disponível agora, no estado em que você se encontra, sem precisar apresentar uma versão mais arrumada de si mesma.", "Você pode ser altamente funcional por fora e profundamente sobrecarregada por dentro. Pode continuar entregando resultados enquanto há uma parte de si pedindo realinhamento em silêncio. O convite de Jesus alcança essa parte — não a da performance, não a do LinkedIn. A que carrega o que ninguém vê. Ela também pode vir. E receber o que nenhuma eficiência produz."],
+    questions: ["Identifique o que você está carregando que não é seu para carregar. Não o que deveria carregar — o que está carregando de fato. Escreva sem justificar cada item.", "O que mudaria no nível de autoridade e clareza com que você governa se operasse a partir de um interior genuinamente realinhado, em vez de um exterior funcional sobre uma base sobrecarregada?"],
+    prayer: "Jesus, venho como estou — não como gostaria de estar. Com o peso que carrego, com a sobrecarga que não mostro. Recebe isso e dá o descanso que não consigo produzir — o que restaura o que está desalinhado, não apenas o que alivia o que está pesado. Que a rainha que emerge deste encontro governe com mais autoridade do que a que entrou."
   },
   9: {
-    verse: "Porque sou eu que conheço os planos que tenho para vós, diz o Senhor, planos de paz e não de mal, para vos dar um futuro e uma esperança.",
-    ref: "Jeremias 29.11",
-    reflection: ["Esta promessa foi escrita para um povo no exílio. Não para um povo no conforto, aguardando confirmação de que as coisas vão continuar bem. Foi escrita para quem estava longe de casa, em terra estranha, sem saber quando — ou se — voltaria. Esse contexto muda tudo: a esperança aqui não é superficial.","Você talvez conheça essa sensação de exílio sem ter saído do lugar. Quando a vida que você imaginou não se materializa. Quando o capítulo se estende além do previsto. Quando você olha para onde está e não reconhece o caminho de volta para quem deveria ser.","Para esse povo — e para você — a promessa não é de que tudo se resolverá amanhã. É de que existe um arquiteto que conhece o projeto completo. E o projeto tem integridade: paz, não mal. Futuro. Esperança. Não há promessa de velocidade. Há promessa de direção."],
-    questions: ["Em que área da sua vida você mais sente que está em 'exílio' — fora do lugar que esperava estar?","O que mudaria na sua postura diante disso se você realmente acreditasse que há um plano com integridade por trás do que não faz sentido agora?"],
-    prayer: "Deus dos planos, hoje escolho confiar no que não vejo. Não porque a espera seja fácil, mas porque Tu conheces o que eu não conheço. Sustenta minha esperança nos dias em que ela parece ingênua. Que o Teu futuro para mim seja mais real do que meu presente confuso."
+    verse: "Porque sou eu que conheço os planos que tenho para vocês, diz o Senhor, planos de fazê-los prosperar e não de lhes causar dano, planos de dar a vocês esperança e um futuro.",
+    ref: "Jeremias 29.11 (NVI)",
+    reflection: ["Esta promessa foi escrita para um povo no exílio. Não para quem estava prosperando e recebia confirmação de que continuaria bem — para quem estava longe do que conhecia, sem certeza de quando voltaria. A esperança que Deus oferece aqui não é superficial. Foi forjada em incerteza real, endereçada a pessoas com razões concretas para duvidar.", "Prosperar — shalom no hebraico — não é apenas ausência de dificuldade. É inteireza, completude, florescimento em todas as dimensões. O plano não é tirar você do processo que exige — é garantir que o processo tenha uma direção que vale a pena percorrer. Não há promessa de velocidade. Há promessa de destino. E o destino é prosperar.", "A rainha que ancora seu planejamento nesta verdade não nega os dados presentes. Ela os lê dentro de um contexto maior: há um Arquiteto que conhece o projeto completo e cujo projeto tem integridade de propósito. Isso não elimina a responsabilidade de agir com excelência. Liberta você de agir a partir do desespero de quem acredita que o resultado final depende exclusivamente do seu esforço."],
+    questions: ["Em qual área da sua vida você está num 'exílio' — num capítulo que não escolheu, num tempo que se estende além do planejado? Escreva sobre isso com honestidade, sem tentar concluir enquanto escreve.", "O que mudaria na sua postura de governo se você genuinamente acreditasse que há um plano de prosperidade — de inteireza — operando por trás do que ainda não faz sentido?"],
+    prayer: "Senhor dos planos, confio hoje no que não vejo. Não porque a espera seja fácil — mas porque Tu conheces o projeto completo e Teu projeto tem integridade. Que a esperança que prometeste seja mais sólida do que a incerteza que sinto. Que eu governe o presente com a confiança de quem sabe que o futuro está em mãos competentes."
   },
   10: {
-    verse: "E conhecereis a verdade, e a verdade vos libertará.",
-    ref: "João 8.32",
-    reflection: ["Libertação, neste versículo, não começa com uma mudança de circunstância. Começa com um encontro com a verdade. E isso é mais perturbador do que parece, porque presume que existe algo em nós que prefere a mentira — a mentira confortável sobre quem somos, sobre por que fazemos o que fazemos.","A mulher que carrega versões falsas de si mesma não o faz por fraqueza de caráter. Faz porque em algum momento foi mais seguro adaptar-se do que permanecer inteira. Aprendeu que ser amada exigia ser diferente. E essas adaptações se tornaram identidade — tão costuradas ao eu que já não parecem roupa emprestada, mas pele.","A verdade que liberta não é cruel. Ela não chega para acusar — chega para restaurar. Mas ela exige que você a olhe de frente, sem os filtros que o autoengano oferece."],
-    questions: ["Existe uma versão de você que você apresenta ao mundo que não é completamente verdadeira?","O que ela esconde — e por quê? Escreva com a suposição de que esta página é um lugar seguro para a verdade."],
-    prayer: "Senhor da verdade, tenho medo do que posso encontrar quando paro de me proteger com meias verdades. Mas quero ser livre mais do que quero estar confortável. Conduz-me ao conhecimento de mim mesma que liberta — e faz isso com a gentileza que só Tu tens."
+    verse: "E conhecerão a verdade, e a verdade os libertará.",
+    ref: "João 8.32 (NVI)",
+    reflection: ["Libertação começa com um encontro — não com uma mudança de circunstância. Isso é perturbador porque pressupõe que existe algo em nós que prefere a narrativa confortável à verdade que liberta. A narrativa sobre quem somos. Sobre por que fazemos o que fazemos. Sobre o que realmente está nos limitando. Nenhuma estratégia de desenvolvimento pessoal alcança esse nível. A liberdade real começa com honestidade radical sobre o que há dentro.", "A mulher de alta capacidade carrega versões de si mesma que não escolheu conscientemente. Em algum ponto foi mais estratégico adaptar-se do que permanecer inteira. Aprendeu que certos aspectos de quem é — diretos demais, intensos demais, diferentes demais — não eram bem-vindos em determinados ambientes. E foi construindo uma versão que funcionava. Essas adaptações se tornaram hábito. E o hábito se tornou identidade.", "A verdade que liberta não destrói — ela restaura. Não chega com condenação, mas com clareza. E a clareza, quando recebida com honestidade, começa a desfazer camada por camada o que foi construído sobre fundação emprestada. A rainha que conhece a verdade sobre si mesma — a versão de Deus sobre quem ela é — governa com uma autoridade que nenhuma narrativa alternativa consegue abalar."],
+    questions: ["Existe uma versão de si mesma que você apresenta ao mundo que não é completamente verdadeira? O que ela esconde — e por que essa proteção ainda parece necessária para você?", "Qual é a verdade sobre você — sobre sua identidade, seu valor, seu chamado — que, se você realmente acreditasse, mudaria como você toma decisões, se relaciona e se posiciona? Escreva em primeira pessoa."],
+    prayer: "Senhor da verdade, tenho coragem de Te pedir que me mostre o que prefiro não ver — não para me condenar, mas porque quero ser livre mais do que quero estar confortável. Que a verdade que tens sobre mim seja mais real do que qualquer narrativa que aprendi a sustentar. Liberta o que ainda está preso. Que essa liberdade mude a qualidade de como governo tudo o que me foi confiado."
   },
   11: {
     verse: "Criou Deus o homem à sua imagem; à imagem de Deus o criou.",
@@ -1891,18 +1965,33 @@ function renderDashboard() {
 function renderHabitGrid() {
   const block = getBlock(userData.currentDay);
   const grid = document.getElementById('habit-grid');
-  let html = '';
+  const crown = `<svg width="78%" height="78%" viewBox="0 0 80 55" fill="none" style="display:block;margin:auto">
+    <line x1="40" y1="2" x2="5" y2="50" stroke="#B8976A" stroke-width="5" stroke-linecap="round"/>
+    <line x1="40" y1="2" x2="75" y2="50" stroke="#B8976A" stroke-width="5" stroke-linecap="round"/>
+    <line x1="40" y1="16" x2="5" y2="50" stroke="#B8976A" stroke-width="5" stroke-linecap="round"/>
+    <line x1="40" y1="16" x2="75" y2="50" stroke="#B8976A" stroke-width="5" stroke-linecap="round"/>
+    <line x1="18" y1="8" x2="5" y2="50" stroke="#B8976A" stroke-width="5" stroke-linecap="round"/>
+    <line x1="18" y1="8" x2="75" y2="50" stroke="#B8976A" stroke-width="5" stroke-linecap="round"/>
+    <line x1="62" y1="8" x2="5" y2="50" stroke="#B8976A" stroke-width="5" stroke-linecap="round"/>
+    <line x1="62" y1="8" x2="75" y2="50" stroke="#B8976A" stroke-width="5" stroke-linecap="round"/>
+    <polyline points="5,50 18,8 40,26 62,8 75,50" fill="none" stroke="#B8976A" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    <polyline points="5,50 40,2 75,50" fill="none" stroke="#B8976A" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    <line x1="5" y1="50" x2="75" y2="50" stroke="#B8976A" stroke-width="5" stroke-linecap="round"/>
+  </svg>`;
+  let out = '';
   for (let i = block.start; i <= block.end; i++) {
     const done = userData.completedDays.includes(i);
     const isToday = i === userData.currentDay;
     const cls = done ? 'done' : isToday ? 'today' : '';
-    html += `<div class="tracker-day ${cls}" onclick="toggleHabitDot(${i})" title="Dia ${i}">${i}</div>`;
+    out += `<div class="tracker-day ${cls}" onclick="toggleHabitDot(${i})" title="Dia ${i}">
+      ${done ? crown : `<span style="font-size:9px;color:var(--muted);font-family:'Jost',sans-serif">${i}</span>`}
+    </div>`;
   }
-  grid.innerHTML = html;
-  const done = userData.completedDays.filter(d => d >= block.start && d <= block.end).length;
+  grid.innerHTML = out;
+  const doneCount = userData.completedDays.filter(d => d >= block.start && d <= block.end).length;
   const total = block.end - block.start + 1;
   const el = document.getElementById('tracker-count');
-  if (el) el.textContent = done + ' de ' + total + ' dias concluídos';
+  if (el) el.textContent = doneCount + ' de ' + total + ' dias concluídos';
 }
 
 function toggleHabitDot(day) {
@@ -1976,6 +2065,22 @@ function renderDayView() {
       <div class="cs-tag">O Clamor · A Oração</div>
       <div class="prayer-text">${d.prayer}</div>
       <div class="prayer-end">· · ·</div>
+    </div>
+
+    <div class="share-bar">
+      <span class="share-label">Compartilhar</span>
+      <button class="share-btn" onclick="shareWhatsApp(${day})">
+        <svg viewBox="0 0 24 24" fill="currentColor" style="width:14px;height:14px"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.524 3.656 1.435 5.163L2 22l4.957-1.404A9.96 9.96 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"/></svg>
+        WhatsApp
+      </button>
+      <button class="share-btn" onclick="shareInstagram(${day})">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:14px;height:14px"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+        Instagram
+      </button>
+      <button class="share-btn" onclick="copyVerse(${day})">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:14px;height:14px"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+        Copiar
+      </button>
     </div>
   `;
 }
@@ -2086,6 +2191,57 @@ setTimeout(() => {
     document.getElementById('auth-screen').classList.remove('hidden');
   }
 }, 4000);
+</script>
+
+<!-- TOAST -->
+<div id="share-toast" style="display:none;position:fixed;bottom:2rem;left:50%;transform:translateX(-50%);background:var(--ink);color:var(--cream);font-family:'Jost',sans-serif;font-size:11px;letter-spacing:1px;padding:0.7rem 1.5rem;border-radius:2px;z-index:9999;transition:opacity 0.3s;opacity:0">✦ Copiado</div>
+
+<script>
+function getShareText(day) {
+  const d = DAYS[day];
+  if (!d) return '';
+  return `✦ LUME · Devocional Atemporal — Dia ${day}\n\n"${d.verse}"\n— ${d.ref}\n\n#LUME #Devocional #NasceuParaReinar`;
+}
+
+function shareWhatsApp(day) {
+  const text = encodeURIComponent(getShareText(day));
+  window.open('https://wa.me/?text=' + text, '_blank');
+}
+
+function shareInstagram(day) {
+  // Instagram não tem API de compartilhamento direto — copia para área de transferência
+  const text = getShareText(day);
+  navigator.clipboard.writeText(text).then(() => {
+    showToast('✦ Copiado — cole no Instagram');
+  }).catch(() => {
+    const el = document.createElement('textarea');
+    el.value = text; document.body.appendChild(el);
+    el.select(); document.execCommand('copy'); document.body.removeChild(el);
+    showToast('✦ Copiado — cole no Instagram');
+  });
+}
+
+function copyVerse(day) {
+  const d = DAYS[day];
+  if (!d) return;
+  const text = `"${d.verse}"\n— ${d.ref}`;
+  navigator.clipboard.writeText(text).then(() => {
+    showToast('✦ Versículo copiado');
+  }).catch(() => {
+    const el = document.createElement('textarea');
+    el.value = text; document.body.appendChild(el);
+    el.select(); document.execCommand('copy'); document.body.removeChild(el);
+    showToast('✦ Versículo copiado');
+  });
+}
+
+function showToast(msg) {
+  const t = document.getElementById('share-toast');
+  t.textContent = msg;
+  t.style.display = 'block';
+  t.style.opacity = '1';
+  setTimeout(() => { t.style.opacity = '0'; setTimeout(() => { t.style.display = 'none'; }, 400); }, 2500);
+}
 </script>
 </body>
 </html>
